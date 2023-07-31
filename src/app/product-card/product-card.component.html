@@ -1,23 +1,40 @@
 <li class="product">
-    <a href="" class="product-link">
+    <a
+        href=""
+        class="product-link"
+    >
 
+        <div class="product-image">
+            <img
+                src="{{product.thumbnail}}"
+                alt="{{product.title}}"
+            >
+        </div>
 
-        <img
-            src="{{product.thumbnail}}"
-            alt="{{product.title}}"
-        >
         <div class="product-info">
-            <h4 class="product-title">{{product.title}}</h4>
-            <p class="product-price">{{product.rating}}</p>
-            <p class="product-price">{{product.description}}$</p>
-            <p class="product-price">Price:{{product.price}}$</p>
-
+            <p class="product-title">{{product.title}} </p>
+            <p class="product-description">{{product.description | shorten:70 }}</p>
+            
+            <p class="product-price">{{product.price}}$</p>
+            
         </div>
     </a>
-    <a
-        href="#"
-        class="product-btn"
-    >Add to cart</a>
+    <div class="product-rating">
+
+        <mat-toolbar ></mat-toolbar>
+        <app-rating (onRating)="Handle($event)"></app-rating>
+        <span > {{product.rating}}</span>
+       
+    </div>
+        <a
+            href="#"
+            class="product-btn"
+        >
+        <i class="fa-solid fa-cart-shopping"></i> 
+        <span>Add to cart</span>
+    </a>
+
+    
 </li>
 
 <!-- <div class="product">

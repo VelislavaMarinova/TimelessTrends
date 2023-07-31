@@ -1,13 +1,19 @@
-
 <div class="container">
-    <h1>{{category}}</h1>
-    <ul class="all-cards">
-        <app-product-card
-            *ngFor="let product of products"
-            [product]="product"
+    <div *ngIf="!noProductsInTheList">
+
+        <h1>{{category}}</h1>
+        <p>Scroll down to view the first set of {{numLoadedProducs}} items</p>
+        <ul class="all-cards">
+            <app-product-card
+                *ngFor="let product of productsToLoad"
+                [product]="product"
             />
-    </ul>
-    <p class="no-products">No products in {{category}}!</p>
-    <button>Load More</button>
+        </ul>
+        <button
+            (click)="onLoadMore()"
+            [disabled]="!loadMore"
+        >Load More</button>
+    </div>
+    <p class="no-products" *ngIf="noProductsInTheList">No products in {{category}} category!</p>
 
 </div>

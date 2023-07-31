@@ -11,10 +11,13 @@ import { ProductResponse } from '../types/productResponse';
 })
 export class ProductsListComponent implements OnInit {
   products: Product[] | undefined;
-  multiProducts: [] = []
+  productsToLoad: Product[] = []
   isLoading: boolean = true;
   noProductsInTheList: boolean = false;
   category: string | undefined;
+  numProductsPerPage: number = 9;
+  numLoadedProducs: number = 0
+  loadMore: boolean = true
 
   constructor(
     private apiService: ApiService,
@@ -22,25 +25,18 @@ export class ProductsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+   
     this.activatedRoute.params.subscribe((params: Params) => {
-      //from params id comes as a string, so it is need to be cast to number
       this.category = params['category'];
       let sliceNumber = null
-
-      //   'sunglasses',
-      // 'womens-jewellery',
-      // 'fragrances',
-      // 'skincare',
-      // 'mens-watches',
-      // 'womens-bags'
+      this.numLoadedProducs=0
 
       switch (this.category) {
-        case 'sunglasses': sliceNumber=10; break
-        case 'womens-jewellery': sliceNumber=6; break
-        case 'skincare': sliceNumber=14; break
-        case 'mens-watches': sliceNumber=3; break
-        case 'womens-bags': sliceNumber=0
+        case 'sunglasses': sliceNumber = 28; break
+        case 'womens-jewellery': sliceNumber = 6; break
+        case 'skincare': sliceNumber = 14; break
+        case 'mens-watches': sliceNumber = 3; break
+        case 'womens-bags': sliceNumber = 0
       }
 
       this.apiService.getProductsByCategory(this.category!).subscribe(
@@ -53,23 +49,57 @@ export class ProductsListComponent implements OnInit {
               // need more products to do the page logic 
               this.products.push(p)
               this.products.push(p)
+              this.products.push(p)
+              this.products.push(p)
+              this.products.push(p)
             })
-            console.log(this.products);
 
+            this.products = this.products.slice(0, sliceNumber);
+          
+            // console.log(this.products.length);
+            if (this.products.length > 9) {
+              this.noProductsInTheList = false;
+              this.loadMore = true
+              this.productsToLoad = this.products.slice(0, this.numProductsPerPage);
+
+              this.numLoadedProducs = this.numLoadedProducs + this.numProductsPerPage
+
+
+            } else if(this.products.length <= 9 && this.products.length!==0){
+              this.productsToLoad = this.products.slice(0);
+              this.numLoadedProducs=this.productsToLoad.length;
+              this.loadMore = false;
+              this.noProductsInTheList = false;
+            }else if(this.products.length===0){
+              this.noProductsInTheList = true;
+              this.numLoadedProducs=this.productsToLoad.length
+            }
+
+            console.log(this.products);
+            console.log(this.productsToLoad);
             this.isLoading = false;
 
-
-            if (this.products.length) {
-              this.noProductsInTheList = true;
-            }
           },
           error: (err) => {
             this.isLoading = false
             console.log(`Error ${err}`);
           }
         })
-      console.log(this.noProductsInTheList);
     })
+  }
+
+  onLoadMore() {
+    console.log(this.products);
+    console.log(this.numLoadedProducs);
+    this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
+    this.numLoadedProducs = this.productsToLoad.length;
+    console.log(this.numLoadedProducs);
+    console.log(this.products.length);
+
+    if (this.numLoadedProducs === this.products.length) {
+      this.loadMore = false
+    }
+
   }
 
 }

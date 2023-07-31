@@ -1,11 +1,13 @@
+
 <div class="container">
     <h1>{{category}}</h1>
     <ul class="all-cards">
         <app-product-card
             *ngFor="let product of products"
             [product]="product"
-        />
+            />
     </ul>
     <p class="no-products">No products in {{category}}!</p>
+    <button>Load More</button>
 
 </div>

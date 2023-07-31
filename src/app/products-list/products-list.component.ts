@@ -35,13 +35,13 @@ export class ProductsListComponent implements OnInit {
       // 'mens-watches',
       // 'womens-bags'
 
-      // switch (this.category) {
-      //   case 'sunglasses': sliceNumber=10; break
-      //   case 'womens-jewellery': sliceNumber=6; break
-      //   case 'skincare': sliceNumber=14; break
-      //   case 'mens-watches': sliceNumber=3; break
-      //   case 'womens-bags': sliceNumber=0
-      // }
+      switch (this.category) {
+        case 'sunglasses': sliceNumber=10; break
+        case 'womens-jewellery': sliceNumber=6; break
+        case 'skincare': sliceNumber=14; break
+        case 'mens-watches': sliceNumber=3; break
+        case 'womens-bags': sliceNumber=0
+      }
 
       this.apiService.getProductsByCategory(this.category!).subscribe(
         {
@@ -50,9 +50,9 @@ export class ProductsListComponent implements OnInit {
 
             this.products = response.products;
             this.products.forEach(p => {
-              //need more products to do the page logic 
-              // this.products.push(p)
-              // this.products.push(p)
+              // need more products to do the page logic 
+              this.products.push(p)
+              this.products.push(p)
             })
             console.log(this.products);
 
@@ -69,11 +69,7 @@ export class ProductsListComponent implements OnInit {
           }
         })
       console.log(this.noProductsInTheList);
-
-
-      // this.recipe = this.recipeService.getOneRecipe(this.id)
     })
-    //this.apiService.getProductsByCategory().subscribe(products => console.log(products))
   }
 
 }

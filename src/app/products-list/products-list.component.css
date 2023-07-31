@@ -1,16 +1,32 @@
 .container {
   box-sizing: border-box;
   width: 100%;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .all-cards {
-  /* display: grid; */
+  display: grid;
+  grid-template-columns:repeat(3,1fr);
+  gap: 16px;
   list-style-type: none;
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap; */
+}
+@media only screen and (max-width: 1024px){
+    .all-cards {
+        display: grid;
+        grid-template-columns:repeat(2, 1fr);
+        gap: 16px;
+        list-style-type: none;
+      }
+
+}
+@media only screen and (max-width: 768px){
+    .all-cards {
+        display: grid;
+        grid-template-columns:1fr;
+        gap: 16px;
+        list-style-type: none;
+      }
+
 }

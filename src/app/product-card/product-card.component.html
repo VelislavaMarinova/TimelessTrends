@@ -4,16 +4,16 @@
         class="product-link"
     >
 
-        <div class="product-image">
-            <img
+        <div class="product-image" [style.background-image]="'url(' + product.thumbnail + ')'" style="width: 210px; height: 210px;">
+            <!-- <img
                 src="{{product.thumbnail}}"
                 alt="{{product.title}}"
-            >
+            > -->
         </div>
 
         <div class="product-info">
-            <h4 class="product-title">{{product.title}} </h4>
-            <p class="product-description">{{product.description | shorten:70 }}</p>
+            <h4 class="product-title">{{product.title | shorten: 30}} </h4>
+            <p class="product-description">{{product.description | shorten:90 }}</p>
             
             <p class="product-price">{{product.price}}$</p>
             

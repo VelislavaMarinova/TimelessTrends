@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { RatingComponent } from './rating/rating.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
-
     ShortenPipe,
-     RatingComponent,
+    RatingComponent,
+    SortPipe
   ],
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   exports: [
     ShortenPipe,
-    RatingComponent
+    RatingComponent,
+    SortPipe
   ]
 })
 export class SharedModule { }

@@ -1,11 +1,26 @@
 <div class="container">
-    <div *ngIf="!noProductsInTheList">
+    <div *ngIf="!noProductsInTheList" class ="all-cards-container">
 
         <h1>{{category}}</h1>
         <p>Scroll down to view the first set of {{numLoadedProducs}} items</p>
+        <div *ngIf="productsToLoad.length>0">
+
+         <div class="sort">
+            <label >Sort</label>
+            <select [(ngModel)]="sortByParam">
+                <option value="title">Product Name</option>
+                <option value="price">Price</option>
+            </select>
+            <button type="button" (click)="onSortDirection()">
+                <i *ngIf="sortDirection==='asc'" class="fa-solid fa-arrow-up-z-a"></i>
+                <i *ngIf="sortDirection==='desc'" class="fa-solid fa-arrow-down-z-a"></i>
+            </button>
+          
+         </div>
+        </div>
         <ul class="all-cards">
             <app-product-card
-                *ngFor="let product of productsToLoad"
+                *ngFor="let product of productsToLoad | sort:[sortByParam, sortDirection]"
                 [product]="product"
             />
         </ul>

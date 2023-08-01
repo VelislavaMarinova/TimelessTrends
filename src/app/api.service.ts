@@ -13,6 +13,6 @@ export class ApiService {
     const { apiUrl } = environment;
     // return this.http.get(`${apiUrl}/category/womens-bags`);
 
-    return this.http.get(`${apiUrl}//category/${category}`);
+    return this.http.get(`${apiUrl}/category/${category}`);
   }
 }

@@ -1,4 +1,5 @@
 .container {
+   
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -6,11 +7,19 @@
   align-items: center;
 }
 
+/* .all-cards-container{
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+} */
 .all-cards {
   display: grid;
   grid-template-columns:repeat(3,1fr);
   gap: 16px;
+  
   list-style-type: none;
+  padding: 0;
 }
 @media only screen and (max-width: 1024px){
     .all-cards {

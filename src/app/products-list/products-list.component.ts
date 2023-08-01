@@ -17,12 +17,22 @@ export class ProductsListComponent implements OnInit {
   category: string | undefined;
   numProductsPerPage: number = 9;
   numLoadedProducs: number = 0
-  loadMore: boolean = true
+  loadMore: boolean = true;
+  sortByParam='';
+  sortDirection="asc"
 
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute
   ) { }
+
+  onSortDirection(){
+    if(this.sortDirection ==='desc'){
+      this.sortDirection='asc';
+    }else{
+      this.sortDirection='desc';
+    }
+  }
 
   ngOnInit(): void {
    
@@ -76,7 +86,7 @@ export class ProductsListComponent implements OnInit {
             }
 
             console.log(this.products);
-            console.log(this.productsToLoad);
+            console.log(this.productsToLoad, 'productsToLoad');
             this.isLoading = false;
 
           },
@@ -89,17 +99,15 @@ export class ProductsListComponent implements OnInit {
   }
 
   onLoadMore() {
-    console.log(this.products);
-    console.log(this.numLoadedProducs);
+    // console.log(this.products);
+    // console.log(this.numLoadedProducs);
     this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
     this.numLoadedProducs = this.productsToLoad.length;
-    console.log(this.numLoadedProducs);
-    console.log(this.products.length);
+    // console.log(this.numLoadedProducs);
+    // console.log(this.products.length);
 
     if (this.numLoadedProducs === this.products.length) {
-      this.loadMore = false
+      this.loadMore = false;
     }
-
   }
-
 }

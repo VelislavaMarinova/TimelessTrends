@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../api.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Product } from '../types/product';
-import { ProductResponse } from '../types/productResponse';
+import { Product } from '../../types/product';
+import { ProductResponse } from '../../types/productResponse';
 
 @Component({
   selector: 'app-products-list',
@@ -38,8 +38,9 @@ export class ProductsListComponent implements OnInit {
    
     this.activatedRoute.params.subscribe((params: Params) => {
       this.category = params['category'];
-      let sliceNumber = null
+      let sliceNumber = null;
       this.numLoadedProducs=0
+      this.isLoading=true;
 
       switch (this.category) {
         case 'sunglasses': sliceNumber = 28; break
@@ -99,12 +100,10 @@ export class ProductsListComponent implements OnInit {
   }
 
   onLoadMore() {
-    // console.log(this.products);
-    // console.log(this.numLoadedProducs);
+  
     this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
     this.numLoadedProducs = this.productsToLoad.length;
-    // console.log(this.numLoadedProducs);
-    // console.log(this.products.length);
+ 
 
     if (this.numLoadedProducs === this.products.length) {
       this.loadMore = false;

@@ -9,6 +9,8 @@ export class FilterPipeByPrice implements PipeTransform {
     transform(value: Product[], args: any[]): any {
         const filterField = args[0];
         let filteredValue = []
+        console.log(filterField);
+        
      
 
            switch(filterField){

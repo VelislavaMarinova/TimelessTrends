@@ -1,25 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    // canActivate:[notAuthGuard]
-   
+    redirectTo: '/products/sunglasses',
   },
   {
     path: 'products/:category',
     component: ProductsListComponent,
-    // canActivate:[notAuthGuard]
-   
   }
 ];
 

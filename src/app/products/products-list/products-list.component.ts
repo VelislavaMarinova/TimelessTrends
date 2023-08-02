@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, Params } from '@angular/router';
+
 import { Product } from '../../types/product';
 import { ProductResponse } from '../../types/productResponse';
 
@@ -18,29 +19,32 @@ export class ProductsListComponent implements OnInit {
   numProductsPerPage: number = 9;
   numLoadedProducs: number = 0
   loadMore: boolean = true;
-  sortByParam='';
-  sortDirection="asc"
+  sortByParam = '';
+  sortDirection = "asc";
+  filterByPrice = "choose";
+  brands: string[] = [];
+  filterByBrand = "choose";
 
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute
   ) { }
 
-  onSortDirection(){
-    if(this.sortDirection ==='desc'){
-      this.sortDirection='asc';
-    }else{
-      this.sortDirection='desc';
-    }
+  onSortDirection() {
+    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
   }
 
   ngOnInit(): void {
-   
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.category = params['category'];
       let sliceNumber = null;
-      this.numLoadedProducs=0
-      this.isLoading=true;
+      this.numLoadedProducs = 0;
+      this.filterByPrice = "choose";
+      this.filterByBrand = "choose";
+
+      this.isLoading = true;
+
 
       switch (this.category) {
         case 'sunglasses': sliceNumber = 28; break
@@ -66,7 +70,13 @@ export class ProductsListComponent implements OnInit {
             })
 
             this.products = this.products.slice(0, sliceNumber);
-          
+            this.products.forEach(p => {
+              if (!this.brands.includes(p.brand)) {
+                this.brands.push(p.brand)
+              }
+            })
+            console.log(this.brands);
+
             // console.log(this.products.length);
             if (this.products.length > 9) {
               this.noProductsInTheList = false;
@@ -76,18 +86,16 @@ export class ProductsListComponent implements OnInit {
               this.numLoadedProducs = this.numLoadedProducs + this.numProductsPerPage
 
 
-            } else if(this.products.length <= 9 && this.products.length!==0){
+            } else if (this.products.length <= 9 && this.products.length !== 0) {
               this.productsToLoad = this.products.slice(0);
-              this.numLoadedProducs=this.productsToLoad.length;
+              this.numLoadedProducs = this.productsToLoad.length;
               this.loadMore = false;
               this.noProductsInTheList = false;
-            }else if(this.products.length===0){
+            } else if (this.products.length === 0) {
               this.noProductsInTheList = true;
-              this.numLoadedProducs=this.productsToLoad.length
+              this.numLoadedProducs = this.productsToLoad.length
             }
 
-            console.log(this.products);
-            console.log(this.productsToLoad, 'productsToLoad');
             this.isLoading = false;
 
           },
@@ -100,13 +108,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   onLoadMore() {
-  
+
     this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
     this.numLoadedProducs = this.productsToLoad.length;
- 
+
 
     if (this.numLoadedProducs === this.products.length) {
       this.loadMore = false;
     }
   }
+  onFilterChange() { }
 }

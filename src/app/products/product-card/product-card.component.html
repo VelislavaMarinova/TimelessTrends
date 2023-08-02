@@ -4,46 +4,36 @@
         class="product-link"
     >
 
-        <div class="product-image" [style.background-image]="'url(' + product.thumbnail + ')'" style="width: 210px; height: 210px;">
-            <!-- <img
-                src="{{product.thumbnail}}"
-                alt="{{product.title}}"
-            > -->
+        <div
+            class="product-image"
+            [style.background-image]="'url(' + product.thumbnail + ')'"
+            style="width: 210px; height: 210px;"
+        >
+
         </div>
 
         <div class="product-info">
             <h4 class="product-title">{{product.title | shorten: 30}} </h4>
             <p class="product-description">{{product.description | shorten:90 }}</p>
-            
+
             <p class="product-price">{{product.price}}$</p>
-            
+
         </div>
     </a>
     <div class="product-rating">
 
-        <mat-toolbar ></mat-toolbar>
+        <!-- <mat-toolbar></mat-toolbar> -->
         <app-rating (onRating)="Handle($event)"></app-rating>
-        <span > {{product.rating}}</span>
-       
+        <span> {{product.rating}}</span>
+
     </div>
-        <a
-            href="#"
-            class="product-btn"
-        >
-        <i class="fa-solid fa-cart-shopping"></i> 
+    <button
+        (click)="onAddToCart()"
+        class="product-btn"
+    >
+        <i class="fa-solid fa-cart-shopping"></i>
         <span>Add to cart</span>
-    </a>
+    </button>
 
-    
+
 </li>
-
-<!-- <div class="product">
-    <img src="AirPod 2nd Gen.jpg">
-    <div class="product-info">
-        <h4 class="product-title">AirPod 2nd Gen
-        </h4>
-        <p class="product-price">$129</p>
-        <a class="product-btn" href="#">Buy Now</a>
-
-    </div>
-</div> -->

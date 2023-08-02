@@ -10,12 +10,12 @@ import { CoreModule } from './core/core.module';
 import { MainComponent } from './products/main/main.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import {HttpClientModule}from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { SharedModule } from './shared/shared.module';
 import { FilterListComponent } from './filter-list/filter-list.component';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './products/sidebar/sidebar.component';
+import { SortProductsComponent } from './products/sort-products/sort-products.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import { SidebarComponent } from './products/sidebar/sidebar.component';
     MainComponent,
     ProductsListComponent,
     FilterListComponent,
-    HomeComponent,
     ProductCardComponent,
     SidebarComponent,
+    SortProductsComponent,
    
  
 

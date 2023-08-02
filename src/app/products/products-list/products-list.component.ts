@@ -32,17 +32,21 @@ export class ProductsListComponent implements OnInit {
 
   onBrandFilterChange(selectedBrand: string) {
     console.log('Selected Brand:', selectedBrand);
-    this.filterByBrand=selectedBrand;
-    // Handle the selected brand filter in your parent component
+    this.filterByBrand = selectedBrand;
   }
   onPriceFilterChange(selectedPrice: string) {
     console.log('Selected Price:', selectedPrice);
-    this.filterByPrice=selectedPrice;
-    // Handle the selected brand filter in your parent component
+    this.filterByPrice = selectedPrice;
   }
-  onSortDirection() {
-    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
+
+  onSortChange(selectedOption: string) {
+    this.sortByParam = selectedOption;
   }
+
+  onSortDirectionChange(selectedSortDirection: string) {
+    this.sortDirection = selectedSortDirection;
+  }
+
 
   ngOnInit(): void {
 
@@ -50,7 +54,7 @@ export class ProductsListComponent implements OnInit {
       this.category = params['category'];
       let sliceNumber = null;
       this.numLoadedProducs = 0;
-      this.brands=[]
+      this.brands = []
       // this.filterByPrice = "choose";
       // this.filterByBrand = "choose";
 

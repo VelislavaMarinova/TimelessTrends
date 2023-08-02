@@ -6,16 +6,5 @@
   display: block;
   width: 100%;
 }
-.content {
-  display: grid;
-  grid-template-columns:1fr 2fr;
-  /* justify-content: space-between; */
-}
 
-@media only screen and (max-width: 1024px){
-    .content {
-        display: grid;
-        grid-template-columns:1fr ;
-        /* justify-content: space-between; */
-      }
-}
+

@@ -96,8 +96,6 @@ export class ProductsListComponent implements OnInit {
               this.numLoadedProducs = this.productsToLoad.length
             }
 
-            console.log(this.products);
-            console.log(this.productsToLoad, 'productsToLoad');
             this.isLoading = false;
 
           },

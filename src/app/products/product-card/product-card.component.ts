@@ -8,6 +8,7 @@ import { Product } from '../../types/product';
 })
 export class ProductCardComponent {
   @Input() product: Product
+  
 
   Handle(event: number) {
     this.product.rating = Number(((this.product.rating + event) / 2).toFixed(2))

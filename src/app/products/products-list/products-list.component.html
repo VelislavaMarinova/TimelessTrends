@@ -9,8 +9,8 @@
             class="all-cards-container"
         >
 
-            <h1>{{category}}</h1>
-            <p>Products loaded: {{numLoadedProducs}} </p>
+            <h1>{{category | uppercase}}</h1>
+            <p> {{productsToLoad.length}} products loaded from total: {{products.length}} </p>
             <div *ngIf="productsToLoad.length>0">
 
                 <div class="sort">
@@ -32,15 +32,28 @@
                   </div>
                 <div class="filter">
                     <label>Filter by price</label>
-                    <select [(ngModel)]="sortByParam">
-                        <option value="title">Product Name</option>
-                        <option value="price">Price</option>
+                    <select [(ngModel)]="filterByPrice"  >
+                        <option value="choose" disabled hidden>choose option...</option>
+                        <option value="remove">remove filter</option>
+                        <option value="0-49">0-49</option>
+                        <option value="50-99">50-99</option>
+                        <option value="100-149">100-149</option>
+                        <option value="150-199">150-199</option>
+                    </select>
+                </div>
+                <div class="filter">
+                    <label>Filter by brand</label>
+                    <select [(ngModel)]="filterByBrand"  >
+                        <option value="choose" disabled hidden>choose option...</option>
+                        <option *ngFor="let brand of brands" value="{{brand}}">{{brand }}</option>
+                       
                     </select>
                 </div>
             </div>
             <ul class="all-cards">
                 <app-product-card
-                    *ngFor="let product of productsToLoad | sort:[sortByParam, sortDirection]"
+                    *ngFor="let product of productsToLoad | sort:[sortByParam, sortDirection] | filterByPrice: [filterByPrice] |filterByBrand:[filterByBrand] "
+                   
                     [product]="product"
                 />
             </ul>

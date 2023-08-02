@@ -21,18 +21,18 @@
     </a>
     <div class="product-rating">
 
-        <mat-toolbar ></mat-toolbar>
+        <!-- <mat-toolbar></mat-toolbar> -->
         <app-rating (onRating)="Handle($event)"></app-rating>
         <span > {{product.rating}}</span>
        
     </div>
-        <a
-            href="#"
+        <button
+          (click)="onAddToCart()"
             class="product-btn"
         >
         <i class="fa-solid fa-cart-shopping"></i> 
         <span>Add to cart</span>
-    </a>
+    </button>
 
     
 </li>

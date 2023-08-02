@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, Params } from '@angular/router';
+
 import { Product } from '../../types/product';
 import { ProductResponse } from '../../types/productResponse';
 
@@ -27,11 +28,7 @@ export class ProductsListComponent implements OnInit {
   ) { }
 
   onSortDirection(){
-    if(this.sortDirection ==='desc'){
-      this.sortDirection='asc';
-    }else{
-      this.sortDirection='desc';
-    }
+    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
   }
 
   ngOnInit(): void {

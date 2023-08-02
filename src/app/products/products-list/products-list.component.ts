@@ -30,6 +30,16 @@ export class ProductsListComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
+  onBrandFilterChange(selectedBrand: string) {
+    console.log('Selected Brand:', selectedBrand);
+    this.filterByBrand=selectedBrand;
+    // Handle the selected brand filter in your parent component
+  }
+  onPriceFilterChange(selectedPrice: string) {
+    console.log('Selected Price:', selectedPrice);
+    this.filterByPrice=selectedPrice;
+    // Handle the selected brand filter in your parent component
+  }
   onSortDirection() {
     this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
   }
@@ -40,8 +50,9 @@ export class ProductsListComponent implements OnInit {
       this.category = params['category'];
       let sliceNumber = null;
       this.numLoadedProducs = 0;
-      this.filterByPrice = "choose";
-      this.filterByBrand = "choose";
+      this.brands=[]
+      // this.filterByPrice = "choose";
+      // this.filterByBrand = "choose";
 
       this.isLoading = true;
 

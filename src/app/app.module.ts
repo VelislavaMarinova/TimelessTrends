@@ -15,6 +15,7 @@ import { ProductCardComponent } from './products/product-card/product-card.compo
 import { SharedModule } from './shared/shared.module';
 import { FilterListComponent } from './filter-list/filter-list.component';
 import { FormsModule } from '@angular/forms';
+import { SidebarComponent } from './products/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { FormsModule } from '@angular/forms';
     FilterListComponent,
     HomeComponent,
     ProductCardComponent,
+    SidebarComponent,
+   
  
 
   ],

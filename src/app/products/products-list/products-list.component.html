@@ -1,5 +1,8 @@
 <div class="product-list-container">
-    <div *ngIf="isLoading" class="product-list-loader">
+    <div
+        *ngIf="isLoading"
+        class="product-list-loader"
+    >
         <app-loader />
     </div>
     <div *ngIf="!isLoading">
@@ -46,41 +49,19 @@
             </div>
             <div class="side-bar">
 
-                <div class="filter">
-                    <label>Filter by price</label>
-                    <select [(ngModel)]="filterByPrice">
-                        <option
-                            value="choose"
-                            disabled
-                            hidden
-                        >choose option...</option>
-                        <option value="remove">remove filter</option>
-                        <option value="0-49">0-49</option>
-                        <option value="50-99">50-99</option>
-                        <option value="100-149">100-149</option>
-                        <option value="150-199">150-199</option>
-                    </select>
-                </div>
-                <div class="filter">
-                    <label>Filter by brand</label>
-                    <select [(ngModel)]="filterByBrand">
-                        <option
-                            value="choose"
-                            disabled
-                            hidden
-                        >choose option...</option>
-                        <option value="remove">remove filter</option>
-                        <option
-                            *ngFor="let brand of brands"
-                            value="{{brand}}"
-                        >{{brand }}</option>
-                    </select>
-                </div>
+           <app-sidebar 
+           [brands]="brands" 
+           (brandFilterChange)="onBrandFilterChange($event)"
+           (priceFilterChange)="onPriceFilterChange($event)"
+           />
             </div>
 
             <ul class="all-cards">
                 <app-product-card
-                    *ngFor="let product of productsToLoad | sort:[sortByParam, sortDirection] | filterByPrice: [filterByPrice] |filterByBrand:[filterByBrand] "
+                    *ngFor="let product of productsToLoad 
+                    | sort:[sortByParam, sortDirection] 
+                    | filterByPrice: [filterByPrice] 
+                    | filterByBrand:[filterByBrand] "
                     [product]="product"
                 />
             </ul>

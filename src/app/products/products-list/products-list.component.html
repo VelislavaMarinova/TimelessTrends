@@ -6,13 +6,12 @@
         <app-loader />
     </div>
     <div *ngIf="!isLoading">
-
         <div
-            *ngIf="!noProductsInTheList"
+            *ngIf="!noProductsInTheList && productsToLoad!==[]"
             class="all-cards-container"
         >
             <h1>{{category | uppercase}}</h1>
-            <p> {{productsToLoad.length}} products loaded from total: {{products.length}} </p>
+            <p> {{numLoadedProducs}} products loaded from total: {{products.length}} </p>
 
             <app-sort-products
                 (sortChange)="onSortChange($event)"
@@ -20,9 +19,8 @@
             />
 
             <div class="side-bar">
-
                 <app-sidebar
-                    [brands]="brands"
+                    [products]="products"
                     (brandFilterChange)="onBrandFilterChange($event)"
                     (priceFilterChange)="onPriceFilterChange($event)"
                 />
@@ -30,10 +28,10 @@
 
             <ul class="all-cards">
                 <app-product-card
-                    *ngFor="let product of productsToLoad 
-                    | sort:[sortByParam, sortDirection] 
-                    | filterByPrice: [filterByPrice] 
-                    | filterByBrand:[filterByBrand] "
+                    *ngFor="let product of productsToLoad
+                    |filterByBrand:[filterByBrand] 
+                    | filterByPrice: [filterByPrice]
+                    | sort:[sortByParam, sortDirection]"
                     [product]="product"
                 />
             </ul>
@@ -47,5 +45,4 @@
             *ngIf="noProductsInTheList"
         >No products in {{category}} category!</p>
     </div>
-
 </div>

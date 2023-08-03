@@ -12,7 +12,6 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import {HttpClientModule}from '@angular/common/http';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { SharedModule } from './shared/shared.module';
-import { FilterListComponent } from './filter-list/filter-list.component';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './products/sidebar/sidebar.component';
 import { SortProductsComponent } from './products/sort-products/sort-products.component';
@@ -22,7 +21,6 @@ import { SortProductsComponent } from './products/sort-products/sort-products.co
     AppComponent,
     MainComponent,
     ProductsListComponent,
-    FilterListComponent,
     ProductCardComponent,
     SidebarComponent,
     SortProductsComponent,

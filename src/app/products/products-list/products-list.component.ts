@@ -22,8 +22,8 @@ export class ProductsListComponent implements OnInit {
   sortByParam = '';
   sortDirection = "asc";
   filterByPrice = "choose";
-  brands: string[] = [];
   filterByBrand = "choose";
+
 
   constructor(
     private apiService: ApiService,
@@ -45,6 +45,8 @@ export class ProductsListComponent implements OnInit {
 
   onSortDirectionChange(selectedSortDirection: string) {
     this.sortDirection = selectedSortDirection;
+    console.log(this.sortDirection);
+    
   }
 
 
@@ -54,9 +56,10 @@ export class ProductsListComponent implements OnInit {
       this.category = params['category'];
       let sliceNumber = null;
       this.numLoadedProducs = 0;
-      this.brands = []
-      // this.filterByPrice = "choose";
-      // this.filterByBrand = "choose";
+      
+
+      this.filterByPrice = "choose";
+      this.filterByBrand = "choose";
 
       this.isLoading = true;
 
@@ -85,12 +88,9 @@ export class ProductsListComponent implements OnInit {
             })
 
             this.products = this.products.slice(0, sliceNumber);
-            this.products.forEach(p => {
-              if (!this.brands.includes(p.brand)) {
-                this.brands.push(p.brand)
-              }
-            })
-            console.log(this.brands);
+
+        
+         
 
             // console.log(this.products.length);
             if (this.products.length > 9) {

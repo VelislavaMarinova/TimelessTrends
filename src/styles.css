@@ -1,4 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-silver: #c6c5b9;
+  --color-blue: #62929e;
+  --color-blue-opacity: #62929e7b;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  --color-paynesgray: #4a6d7c;
+  --color-red: #f07167;
+  --color-text: #35454b;
+}
+
+html,
+body {
+  margin: 0;
+background-color: var(--color-silver);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  color: var(--color-text);
+  height: 100%;
+}
+
+li {
+  list-style: none;
+}

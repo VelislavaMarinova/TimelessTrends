@@ -7,6 +7,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { FilterPipeByPrice } from './pipes/filterByPrice.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { FilterPipeByBrand } from './pipes/filterByBrand.pipe';
+import { DropdownDirective } from './dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FilterPipeByBrand } from './pipes/filterByBrand.pipe';
     FilterPipeByBrand,
     RatingComponent,
     SortPipe,
-    LoaderComponent
+    LoaderComponent,
+    DropdownDirective
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { FilterPipeByBrand } from './pipes/filterByBrand.pipe';
     SortPipe,
     LoaderComponent,
     FilterPipeByPrice,
-    FilterPipeByBrand
+    FilterPipeByBrand,DropdownDirective
   ]
 })
 export class SharedModule { }

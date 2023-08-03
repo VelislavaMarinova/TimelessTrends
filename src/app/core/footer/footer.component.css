@@ -1,0 +1,20 @@
+
+.footer-container{
+    display: flex;
+    justify-content: center;
+}
+.footer-header{
+    display: flex;
+}
+.footer-header ul{
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
+.footer-body{
+    display: flex;
+    gap:3rem
+}
+.footer-end{
+    text-align: center;
+}

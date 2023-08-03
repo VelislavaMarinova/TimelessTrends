@@ -1,27 +1,33 @@
 <header class="header">
+    <div class="header-account">
+        <div class="logo">Timeless<strong>Trends</strong></div>
+        <ul>
+            <li><i class="fa-solid fa-cart-shopping"></i><span class="cart-products"> 5</span></li>
+            <li><i class="fa-solid fa-user"></i><span> Wellcome</span></li>
+        </ul>
+    </div>
 
     <nav>
         <input
             id="nav-toggle"
             type="checkbox"
+           
         >
-        <div class="logo">Product-listing<strong>Page</strong></div>
-        <ul class="links">
-            <li *ngFor="let category of categories">
-                <a [closeMenu]="isMenuOpen" routerLink="/products/{{category}}">{{category}}</a>
+        <ul class="links" >
+            <li *ngFor="let category of categories" class="link">
+                <a [closeMenu]="isMenuOpen"  (click)="onCloseMenuClick()" routerLink="/products/{{category}}">{{category}}</a>
             </li>
         </ul>
         <label
             for="nav-toggle"
             class="icon-burger"
+            (click)="onCloseMenuClick()"
         >
             <div class="line"></div>
             <div class="line"></div>
             <div class="line"></div>
         </label>
     </nav>
-
-
 </header>
 
 

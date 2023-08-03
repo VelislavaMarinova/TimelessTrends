@@ -15,6 +15,7 @@ export class DropdownDirective {
         const checkbox = document.getElementById('nav-toggle') as HTMLInputElement;
         if (checkbox) {
           checkbox.checked = false;
+          
         }
         this.isMenuOpen = false;
       }

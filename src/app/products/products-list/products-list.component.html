@@ -6,13 +6,12 @@
         <app-loader />
     </div>
     <div *ngIf="!isLoading">
-
         <div
             *ngIf="!noProductsInTheList && productsToLoad!==[]"
             class="all-cards-container"
         >
             <h1>{{category | uppercase}}</h1>
-            <p> {{numLoadedProducts}} products loaded from total: {{products.length}} </p>
+            <p> {{numLoadedProducs}} products loaded from total: {{products.length}} </p>
 
             <app-sort-products
                 (sortChange)="onSortChange($event)"

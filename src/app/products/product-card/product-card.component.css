@@ -16,9 +16,8 @@
   background: #ffffff;
   color: var(--color-paynesgray);
   text-align: center;
-  border-radius: 1.2rem;
+  border-radius: 8px;
   transition: all 0.3s;
- 
 }
 
 .product .product-link {
@@ -117,8 +116,9 @@
     width: 80%;
   }
 }
-@media only screen and (max-width: 768px) {
-  .product {
-    /* max-width: 40vw; */
+@media(max-width: 768px) {
+  .product .product-btn{
+    text-align: center;
+    font-size: 1rem;
   }
 }

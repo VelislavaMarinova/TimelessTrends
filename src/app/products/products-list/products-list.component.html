@@ -8,13 +8,16 @@
     <div *ngIf="!isLoading">
         <div class="product-list-header-wrapper">
 
+            <div class="product-list-header-img">
+                <img src="{{categoryImage}}" alt="{{category}}">
+            </div>
             <div class="product-list-header">
                 <h1>{{category | uppercase}}</h1>
                 <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
                     consequuntur. Lorem
                     ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, harum!</p>
-                <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}
-                </p>
+                <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}</p>
+
             </div>
             <div class="product-list-sort">
 
@@ -44,7 +47,7 @@
                     <app-product-card
                         *ngFor="let product of productsToLoad
                     |filterByBrand:[filterByBrand] 
-                    | filterByPrice: [filterByPrice]
+                    |filterByPrice:[filterByPrice]
                     | sort:[sortByParam, sortDirection]"
                         [product]="product"
                     />

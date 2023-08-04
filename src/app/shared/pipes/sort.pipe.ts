@@ -8,8 +8,8 @@ export class SortPipe implements PipeTransform {
   transform(value: Array<string>, args: any[]): any {
     const sortField = args[0];
     const sortDirection = args[1];
-    console.log(sortDirection,'SortPipe');
-    console.log(value);
+    // console.log(sortDirection,'SortPipe');
+    // console.log(value);
     
     
     let multiplier = 1;

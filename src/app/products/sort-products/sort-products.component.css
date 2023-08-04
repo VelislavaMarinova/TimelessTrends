@@ -1,27 +1,52 @@
-.sort{
-    margin-top: 3rem;
-    margin-left: 7rem;
-    display: flex;
+.sort {
+   
+padding-right: 2rem;
+  display: flex;
+  align-items: center;
 }
-.sort label{
-    font-size: 1.3rem;
+.sort label {
+  font-size: 1.3rem;
 
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
-.sort select{
-padding: 0.5rem;
-border-radius: 4px;
+.sort select {
+  padding: 0.5rem;
+  border-radius: 4px;
 }
 
-.sort select option{
-    font-size: 1.1rem;
-    padding: 1rem;
+.sort select option {
+  font-size: 1.1rem;
+  padding: 1rem;
 }
-.sort button{
-    font-size: 1.5rem;
-    font-weight: 200;
-    background-color: var(--color-paynesgray);
-    border-radius: 4px;
-    color: white;
-    
+.sort button {
+  font-size: 1.5rem;
+  font-weight: 200;
+  background-color: var(--color-paynesgray);
+  border-radius: 4px;
+  color: white;
+}
+
+@media (max-width: 768px) {
+    .sort {
+        margin: 1rem 0;
+        margin-left: 0;
+      }
+      .sort label {
+        font-size: 1.2rem;
+      }
+      .sort select {
+        padding: 0.2rem;
+        width: 35%;
+      }
+      
+      .sort select option {
+        font-size: 0.8rem;
+      }
+      .sort button {
+        font-size: 1.1rem;
+        background-color: var(--color-paynesgray);
+        border-radius: 4px;
+        color: white;
+      }
+      
 }

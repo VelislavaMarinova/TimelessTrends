@@ -1,9 +1,8 @@
 .footer-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-
+  padding-inline: 2rem;
   background-color: var(--color-paynesgray);
   color: white;
 }
@@ -26,6 +25,7 @@
   display: flex;
   gap: 10rem;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .footer-body h4 {
@@ -37,4 +37,19 @@
   width: 100vw;
   color: var(--color-paynesgray);
   padding: 0.5rem 0;
+}
+
+@media (max-width: 1024px) {
+
+    .footer-body{
+        gap: 7rem
+    }
+}
+@media (max-width: 768px) {
+    .footer-container{
+        padding-inline: 1rem;
+    }
+    .footer-body{
+        gap:0.5rem;
+    }
 }

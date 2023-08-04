@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './products/sidebar/sidebar.component';
 import { SortProductsComponent } from './products/sort-products/sort-products.component';
+import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,7 @@ import { SortProductsComponent } from './products/sort-products/sort-products.co
     ProductCardComponent,
     SidebarComponent,
     SortProductsComponent,
-   
- 
-
+    FilterPipeByPrice
   ],
   imports: [
     BrowserModule,

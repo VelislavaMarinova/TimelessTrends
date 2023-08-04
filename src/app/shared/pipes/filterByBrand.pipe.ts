@@ -8,7 +8,7 @@ export class FilterPipeByBrand implements PipeTransform {
 
     transform(value: Product[], args: any[]): any {
         const filterField = args[0];
-        console.log(filterField);
+        // console.log(filterField);
         
         let filterResult
       

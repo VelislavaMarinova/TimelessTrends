@@ -24,9 +24,10 @@
 .product-list-header h1{
   font-size: 1.5rem;
 }
-.product-list-header p{
-  font-size: 1.3rem;
+.product-list-header-loaded-products{
+  font-size: 1rem;
 }
+
 .product-list-header-img {
   margin: 0.5rem;
   overflow: hidden;
@@ -39,9 +40,7 @@
   height: 100%;
   object-fit: cover;
 }
-.product-list-header p {
-  font-size: 1.3rem;
-}
+
 .product-list-header p span {
   font-weight: bold;
 }

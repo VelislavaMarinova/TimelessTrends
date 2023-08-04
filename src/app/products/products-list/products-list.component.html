@@ -1,4 +1,4 @@
-<div class="products">
+<div class="products container">
     <div
         *ngIf="isLoading"
         class="product-list-loader"
@@ -14,9 +14,12 @@
             <div class="product-list-header">
                 <h1>{{category | uppercase}}</h1>
                 <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-                    consequuntur. Lorem
-                    ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, harum!</p>
-                <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}</p>
+                    consequuntur.</p>
+                    <div class="product-list-header-loaded-products">
+                        <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}</p>
+                        <p *ngIf="filterByPrice!=='choose'">{{(productsToLoad |filterByPrice:[filterByPrice])?.length}} products filtered by price range {{filterByPrice}}</p>
+                        <p *ngIf="filterByBrand!=='choose'">{{(productsToLoad |filterByBrand:[filterByBrand])?.length}} products filtered by brand {{filterByBrand}}</p>
+                    </div>
 
             </div>
             <div class="product-list-sort">

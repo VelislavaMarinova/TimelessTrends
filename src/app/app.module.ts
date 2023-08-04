@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './products/sidebar/sidebar.component';
 import { SortProductsComponent } from './products/sort-products/sort-products.component';
 import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
+import { CartCountService } from './cartCount.service';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
     FormsModule
     
   ],
-  providers: [],
+  providers: [CartCountService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

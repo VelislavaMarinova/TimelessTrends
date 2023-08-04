@@ -1,15 +1,16 @@
 .sort {
-   
+   margin-top: 9rem;
 padding-right: 2rem;
   display: flex;
   align-items: center;
 }
 .sort label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 
   margin-right: 0.5rem;
 }
 .sort select {
+    
   padding: 0.5rem;
   border-radius: 4px;
 }
@@ -32,11 +33,11 @@ padding-right: 2rem;
         margin-left: 0;
       }
       .sort label {
-        font-size: 1.2rem;
+        font-size: 1.rem;
       }
       .sort select {
         padding: 0.2rem;
-        width: 35%;
+        width: 41%;
       }
       
       .sort select option {

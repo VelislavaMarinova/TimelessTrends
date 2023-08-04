@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../types/product';
+import { CartCountService } from 'src/app/cartCount.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,6 +9,8 @@ import { Product } from '../../types/product';
 })
 export class ProductCardComponent {
   @Input() product: Product;
+  addCountToCart:number=1
+  constructor(private cartCountService: CartCountService){}
 
   Handle(event: number) {
     this.product.rating = Number(((this.product.rating + event) / 2).toFixed(2))
@@ -15,6 +18,8 @@ export class ProductCardComponent {
   }
 
   onAddToCart() {
+    
+    this.cartCountService.updateCartCount(this.addCountToCart)
     alert(`${this.product.title} added to cart`)
   }
 

@@ -31,9 +31,6 @@
             *ngIf="!noProductsInTheList && productsToLoad!==[]"
             class="product-list"
         >
-
-
-
             <div class="product-list-filters">
                 <app-sidebar
                     [products]="products"
@@ -61,6 +58,6 @@
         <p
             class="no-products"
             *ngIf="noProductsInTheList"
-        >No products in {{category}} category!</p>
+        >No products in {{category}} category!<i class="fa-solid fa-magnifying-glass"></i></p>
     </div>
 </div>

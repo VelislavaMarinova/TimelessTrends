@@ -1,5 +1,6 @@
 .products {
-  padding-block: 2rem;
+  padding-block: 1.5rem;
+  padding-left: 1rem;
 }
 .product-list-loader {
   display: flex;
@@ -17,6 +18,7 @@
 }
 
 .product-list-header {
+  margin-left:2rem;
   max-height: 200px;
 }
 .product-list-header h1{

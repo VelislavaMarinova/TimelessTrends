@@ -28,9 +28,9 @@
 @media (max-width: 768px) {
   .filter {
     padding: 1rem;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    /* align-items: center; */
     gap: 1rem;
     /* width: 20%; */
   }

@@ -96,7 +96,7 @@ nav .icon-burger {
 nav .icon-burger .line {
   width: 30px;
   height: 5px;
-  background-color: var(--color-silver);
+  background-color: white;
   margin: 5px;
   border-radius: 3px;
   transition: all 0.3s ease-in-out;

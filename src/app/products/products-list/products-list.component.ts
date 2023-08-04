@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ProductResponse } from '../../types/productResponse';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit,OnChanges {
   products: Product[] | undefined;
   productsToLoad: Product[] = []
   isLoading: boolean = true;
@@ -122,6 +122,12 @@ export class ProductsListComponent implements OnInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    
+    console.log(this.productsToLoad,"onchanges");
+    
+  }
+
   onLoadMore() {
 
     this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
@@ -131,6 +137,8 @@ export class ProductsListComponent implements OnInit {
     if (this.numLoadedProducs === this.products.length) {
       this.loadMore = false;
     }
+    console.log(this.loadMore,'loadmore');
+    
   }
   onFilterChange() { }
 }

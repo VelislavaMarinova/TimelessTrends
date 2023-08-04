@@ -1,5 +1,105 @@
+
+.products{
+  padding-block: 2rem;
+}
 .product-list-loader {
   display: flex;
   justify-content: space-around;
   padding-top: 10%;
 }
+.product-list-header-wrapper{
+  margin-left: 12rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-list-header {
+ width: 60%;
+}
+.product-list-header p{
+  font-size: 1.3rem;
+}
+.product-list-header p span{
+  font-weight: bold;
+}
+
+.product-list-filters {
+  grid-area: filters;
+}
+.product-list-cards {
+  grid-area: cards;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4fr);
+  grid-template-rows: auto;
+  width: 100%;
+  gap:2rem;
+  grid-template-areas:
+  
+    "filters cards cards cards"
+    "filters cards cards cards"
+    "filters cards cards cards"
+    
+}
+
+
+
+.product-list-cards .all-cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  grid-template-rows:repeat(3, 1fr);
+  width: 100%;
+}
+.product-list-cards{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.product-list-cards button{
+  width: 200px;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: var(--color-paynesgray);
+  color: white;
+  border: 1px solid transparent;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out ;
+}
+.product-list-cards button:hover{
+  border: 1px solid var(--color-paynesgray);
+  background-color: var(--color-silver);
+  color: var(--color-paynesgray);
+  
+}
+.product-list-cards button.disabled-button {
+  pointer-events: none; /* Prevents interactions */
+  opacity: 0.6; /* Dim the appearance of the button */
+}
+@media (max-width: 1024px) {
+  .product-list-cards .all-cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    grid-template-rows:auto
+  }
+}
+
+@media (max-width: 768px) {
+  .product-list-cards .all-cards{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    grid-template-rows:auto;
+  }
+}
+
+
+/* .product-list-filters{
+  grid-row: 1/span 4;
+} */

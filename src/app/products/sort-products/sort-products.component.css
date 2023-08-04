@@ -1,0 +1,27 @@
+.sort{
+    margin-top: 3rem;
+    margin-left: 7rem;
+    display: flex;
+}
+.sort label{
+    font-size: 1.3rem;
+
+    margin-right: 0.5rem;
+}
+.sort select{
+padding: 0.5rem;
+border-radius: 4px;
+}
+
+.sort select option{
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+.sort button{
+    font-size: 1.5rem;
+    font-weight: 200;
+    background-color: var(--color-paynesgray);
+    border-radius: 4px;
+    color: white;
+    
+}

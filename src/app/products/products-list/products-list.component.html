@@ -1,4 +1,4 @@
-<div class="product-list-container">
+<div class="products">
     <div
         *ngIf="isLoading"
         class="product-list-loader"
@@ -6,19 +6,32 @@
         <app-loader />
     </div>
     <div *ngIf="!isLoading">
+        <div class="product-list-header-wrapper">
+
+            <div class="product-list-header">
+                <h1>{{category | uppercase}}</h1>
+                <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
+                    consequuntur. Lorem
+                    ipsum, dolor sit amet consectetur adipisicing elit. Blanditiis, harum!</p>
+                <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}
+                </p>
+            </div>
+            <div class="product-list-sort">
+
+                <app-sort-products
+                    (sortChange)="onSortChange($event)"
+                    (sortDirectionChange)="onSortDirectionChange($event)"
+                />
+            </div>
+        </div>
         <div
             *ngIf="!noProductsInTheList && productsToLoad!==[]"
-            class="all-cards-container"
+            class="product-list"
         >
-            <h1>{{category | uppercase}}</h1>
-            <p> {{numLoadedProducs}} products loaded from total: {{products.length}} </p>
 
-            <app-sort-products
-                (sortChange)="onSortChange($event)"
-                (sortDirectionChange)="onSortDirectionChange($event)"
-            />
 
-            <div class="side-bar">
+
+            <div class="product-list-filters">
                 <app-sidebar
                     [products]="products"
                     (brandFilterChange)="onBrandFilterChange($event)"
@@ -26,19 +39,21 @@
                 />
             </div>
 
-            <ul class="all-cards">
-                <app-product-card
-                    *ngFor="let product of productsToLoad
+            <div class="product-list-cards">
+                <ul class="all-cards">
+                    <app-product-card
+                        *ngFor="let product of productsToLoad
                     |filterByBrand:[filterByBrand] 
                     | filterByPrice: [filterByPrice]
                     | sort:[sortByParam, sortDirection]"
-                    [product]="product"
-                />
-            </ul>
-            <button
-                (click)="onLoadMore()"
-                [disabled]="!loadMore"
-            >Load More</button>
+                        [product]="product"
+                    />
+                </ul>
+                <button
+                    (click)="onLoadMore()"
+                    [ngClass]="{ 'disabled-button': !loadMore }"
+                >Load More</button>
+            </div>
         </div>
         <p
             class="no-products"

@@ -3,21 +3,39 @@
   --color-blue: #62929e;
   --color-blue-opacity: #62929e7b;
 
-  --color-paynesgray: #4a6d7c;
+  --color-paynesgray: #2c3e50;
   --color-red: #f07167;
   --color-text: #35454b;
 }
 
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   margin: 0;
-background-color: var(--color-silver);
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-
+  background-color: var(--color-silver);
+  font-family: Popins;
   color: var(--color-text);
+  min-height: 100vh;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
   height: 100%;
 }
 
 li {
   list-style: none;
 }
+button{
+    cursor: pointer;
+    
+}
+button .disabled{
+    background-color: #c6c5b9;
+}
+ul{
+    padding: 0;
+}
+

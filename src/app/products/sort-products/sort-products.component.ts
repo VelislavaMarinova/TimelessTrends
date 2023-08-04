@@ -9,7 +9,7 @@ export class SortProductsComponent {
   @Output() sortChange = new EventEmitter<string>();
   @Output() sortDirectionChange=new EventEmitter<string>();
 
-  sortByParam: string = '';
+  sortByParam: string = 'title';
   sortDirection = "asc";
 
   onSortDirection() {

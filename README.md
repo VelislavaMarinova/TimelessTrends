@@ -3,7 +3,7 @@
 This project is generated with Angular version 16.1.4.
 The project is about listing products by categories. Each product has: title, image and short desciption. User can add product to cart, rate the product, filter products and sort them by different options.
 
-![Timeless Trends](src/assets/test.jpg)
+![Timeless Trends](src/assets/test.png)
 
 ## Development server
 

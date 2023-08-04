@@ -1,30 +1,15 @@
 # Timeless Trends
 
-This project is generated with Angular version 16.1.4.
-The project is about listing products by categories. Each product has: title, image and short desciption. User can add product to cart, rate the product, filter products and sort them by different options.
+This project is generated with Angular version 16.1.4. The project is about listing products by categories. Each product has a title, an image, and a short description. Users can add products to the cart, rate the products, filter products, and sort them by different options
 
 ![Timeless Trends](src/assets/test.png)
 
-## Development server
+## run project:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. 
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Data source:
+ DummyJSON: https://dummyjson.com/docs/products
+## Note:
+DummyJSON returns categories with 5 products in each. To implement the logic about load more products are needed more then 5 products, so i simulated it to return different number of products for each collection, so user is able to see all cases.

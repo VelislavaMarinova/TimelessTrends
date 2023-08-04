@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { DropdownDirective } from '../shared/dropdown.directive';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,11 +12,12 @@ import { DropdownDirective } from '../shared/dropdown.directive';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    DropdownDirective
+  
   ],
   imports: [
     CommonModule,
-    RouterLink
+    RouterLink, 
+    SharedModule
   ], 
   exports:[
     HeaderComponent,

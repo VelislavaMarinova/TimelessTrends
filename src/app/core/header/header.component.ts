@@ -4,9 +4,10 @@ import { Component, HostListener } from '@angular/core';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
+  
 })
 export class HeaderComponent {
-  isMenuOpen: boolean = true;// Start with the menu open on larger screens
+  isMenuOpen: boolean = false;
   categories: string[] = [
     'sunglasses',
     'womens-jewellery',
@@ -16,5 +17,11 @@ export class HeaderComponent {
     'womens-bags'
   ]
 
-
+  onCloseMenuClick(){
+    this.isMenuOpen=!this.isMenuOpen;
+    console.log(this.isMenuOpen);
+  }
+  setIsOpenedToTrue(){
+    this.isMenuOpen=true;
+  }
 }

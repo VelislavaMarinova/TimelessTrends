@@ -1,31 +1,40 @@
-
-
 <div class="filter">
-    
+    <div class="filter-price">
 
-    <label>Filter by price</label>
-    <select [(ngModel)]="filterByPrice" (ngModelChange)="onPriceFilterChange()">
-        <option
-            value="choose"
-            disabled
-            hidden
-        >choose option...</option>
-        <option value="remove">remove filter</option>
-        <option value="{{range}}" *ngFor="let range of priceRanges">({{range}})$</option>
-     
-    </select>
+        <label>Price</label>
+        <select
+            [(ngModel)]="filterByPrice"
+            (ngModelChange)="onPriceFilterChange()"
+        >
+            <option
+                value="choose"
+                disabled
+                hidden
+            >choose option...</option>
+            <option value="remove">remove filter</option>
+            <option
+                value="{{range}}"
+                *ngFor="let range of priceRanges"
+            >({{range}})$</option>
 
-    <label>Filter by brand</label>
-    <select [(ngModel)]="filterByBrand" (ngModelChange)="onBrandFilterChange()">
-        <option
-            value="choose"
-            disabled
-            hidden
-        >choose option...</option>
-        <option value="remove">remove filter</option>
-        <option
-            *ngFor="let brand of brands"
-            value="{{brand}}"
-        >{{brand }}</option>
-    </select>
+        </select>
+    </div>
+    <div class="filter-brand">
+        <label>Brand</label>
+        <select
+            [(ngModel)]="filterByBrand"
+            (ngModelChange)="onBrandFilterChange()"
+        >
+            <option
+                value="choose"
+                disabled
+                hidden
+            >choose option...</option>
+            <option value="remove">remove filter</option>
+            <option
+                *ngFor="let brand of brands"
+                value="{{brand}}"
+            >{{brand }}</option>
+        </select>
+    </div>
 </div>

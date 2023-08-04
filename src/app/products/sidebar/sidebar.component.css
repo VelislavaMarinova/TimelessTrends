@@ -1,0 +1,29 @@
+.filter {
+   
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 14rem;
+  /* background-color: aqua; */
+}
+.filter-price,
+.filter-brand {
+  display: flex;
+  flex-direction: column;
+}
+.filter label{
+    font-size: 1.3rem;
+    
+    margin-bottom: 0.5rem;
+}
+.filter-price select,
+.filter-brand select{
+    padding: 0.5rem;
+    border-radius: 4px;
+    
+}
+.filter-price select option,
+.filter-brand select option{
+    font-size: 1.1rem;
+}

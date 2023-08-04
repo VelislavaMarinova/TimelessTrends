@@ -12,4 +12,4 @@ Navigate to `http://localhost:4200/`. The application will automatically reload 
 ## Data source:
  DummyJSON: https://dummyjson.com/docs/products
 ## Note:
-DummyJSON returns categories with 5 products in each. To implement the logic about load more products are needed more then 5 products, so i simulated it to return different number of products for each collection, so user is able to see all cases.
+DummyJSON returns categories with 5 products each. To implement the logic for loading more products, I simulated different numbers of products for each collection by multiplying these 5 products. This allows users to experience various scenarios where more than 5 products are needed to be loaded in order to see all the available items.

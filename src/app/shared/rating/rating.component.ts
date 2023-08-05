@@ -42,13 +42,13 @@ export class RatingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   // this.maxRatingArr = Array(this.maxRating).fill(0);
+   
     this.calculateAverageRating();
   }
 
   updateStars() {
     for (let i = 0; i < this.SelectedStar; i++) {
-      this.maxRatingArr[i] = 1; // Set the value to 1 to indicate a filled star
+      this.maxRatingArr[i] = 1; 
     }
   }
   calculateAverageRating() {
@@ -56,7 +56,7 @@ export class RatingComponent implements OnInit {
       this.maxRatingArr = Array(this.maxRating).fill(0);
     } else {
       const averageRating = this.cumulativeRating / this.totalRatings;
-      const roundedAverage = Math.round(averageRating * 2) / 2; // Round to nearest 0.5
+      const roundedAverage = Math.round(averageRating * 2) / 2; 
 
       this.maxRatingArr = Array(this.maxRating).fill(0).map((_, index) => (index < roundedAverage ? 1 : 0));
     }

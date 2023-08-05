@@ -15,20 +15,9 @@ export class RatingComponent implements OnInit {
 
   maxRatingArr: any = [];
 
-
   constructor() { }
   HandleMouseEnter(index: number) {
-    this.SelectedStar = index + 1
-  }
-
-
-
-  HandleMouseLeave() {
-    if (this.previousSelection !== 0) {
-      this.SelectedStar = this.previousSelection
-    } else {
-      this.SelectedStar = 0
-    }
+   this.SelectedStar = index + 1
   }
 
   Rating(index) {

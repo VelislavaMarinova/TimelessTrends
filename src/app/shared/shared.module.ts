@@ -4,7 +4,6 @@ import { ShortenPipe } from './pipes/shorten.pipe';
 import { RatingComponent } from './rating/rating.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SortPipe } from './pipes/sort.pipe';
-// import { FilterPipeByPrice } from './pipes/filterByPrice.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { FilterPipeByBrand } from './pipes/filterByBrand.pipe';
 import { DropdownDirective } from './dropdown.directive';
@@ -12,7 +11,6 @@ import { DropdownDirective } from './dropdown.directive';
 @NgModule({
   declarations: [
     ShortenPipe,
-    // FilterPipeByPrice,
     FilterPipeByBrand,
     RatingComponent,
     SortPipe,
@@ -29,7 +27,6 @@ import { DropdownDirective } from './dropdown.directive';
     RatingComponent,
     SortPipe,
     LoaderComponent,
-    // FilterPipeByPrice,
     FilterPipeByBrand,DropdownDirective
   ]
 })

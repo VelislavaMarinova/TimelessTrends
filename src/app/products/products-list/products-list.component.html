@@ -5,21 +5,30 @@
     >
         <app-loader />
     </div>
-    <div *ngIf="!isLoading" class="product-list-wrapper">
+    <div
+        *ngIf="!isLoading"
+        class="product-list-wrapper"
+    >
         <div class="product-list-header-wrapper">
 
             <div class="product-list-header-img">
-                <img src="{{categoryImage}}" alt="{{category}}">
+                <img
+                    src="{{categoryImage}}"
+                    alt="{{category}}"
+                >
             </div>
             <div class="product-list-header">
                 <h1>{{category | uppercase}}</h1>
                 <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
                     consequuntur.</p>
-                    <div class="product-list-header-loaded-products">
-                        <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}</p>
-                        <p *ngIf="filterByPrice!=='choose'">{{(productsToLoad |filterByPrice:[filterByPrice])?.length}} products filtered by price range {{filterByPrice}}$</p>
-                        <p *ngIf="filterByBrand!=='choose'">{{(productsToLoad |filterByBrand:[filterByBrand])?.length}} products filtered by brand {{filterByBrand}}</p>
-                    </div>
+                <div class="product-list-header-loaded-products">
+                    <p *ngIf="!noProductsInTheList">{{numLoadedProducs}} products loaded from total: {{products.length}}
+                    </p>
+                    <p *ngIf="filterByPrice!=='choose'">{{(productsToLoad |filterByPrice:[filterByPrice])?.length}}
+                        products filtered by price range {{filterByPrice}}$</p>
+                    <p *ngIf="filterByBrand!=='choose'">{{(productsToLoad |filterByBrand:[filterByBrand])?.length}}
+                        products filtered by brand {{filterByBrand}}</p>
+                </div>
 
             </div>
             <div class="product-list-sort">
@@ -58,7 +67,6 @@
                 >Load More</button>
             </div>
         </div>
-
         <div class="product-list-ni-products">
             <p
                 class="no-products"

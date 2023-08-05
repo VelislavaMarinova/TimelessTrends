@@ -4,7 +4,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { ApiService } from '../../api.service';
 import { Product } from '../../types/product';
 import { ProductResponse } from '../../types/productResponse';
-import { FilterUpdateService } from 'src/app/filterUpdate.service';
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
@@ -30,7 +29,7 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
-    private filterUpdateService: FilterUpdateService) { }
+    ) { }
 
   onBrandFilterChange(selectedBrand: string) {
     this.filterByBrand = selectedBrand;
@@ -40,8 +39,6 @@ export class ProductsListComponent implements OnInit {
     this.filterByPrice = selectedPrice;
   }
 
-
-
   onSortChange(selectedOption: string) {
     this.sortByParam = selectedOption;
   }
@@ -49,9 +46,7 @@ export class ProductsListComponent implements OnInit {
   onSortDirectionChange(selectedSortDirection: string) {
     this.sortDirection = selectedSortDirection;
     console.log(this.sortDirection);
-
   }
-
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +60,6 @@ export class ProductsListComponent implements OnInit {
       this.filterByPrice = "choose";
       this.filterByBrand = "choose";
       this.isLoading = true;
-
 
       switch (this.category) {
         case 'sunglasses': sliceNumber = 28, this.categoryImage = "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"; break
@@ -123,7 +117,6 @@ export class ProductsListComponent implements OnInit {
 
     this.productsToLoad = this.products.slice(0, this.numLoadedProducs + this.numProductsPerPage)
     this.numLoadedProducs = this.productsToLoad.length;
-
 
     if (this.numLoadedProducs === this.products.length) {
       this.loadMore = false;

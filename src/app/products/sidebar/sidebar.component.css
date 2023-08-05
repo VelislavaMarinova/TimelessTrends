@@ -4,36 +4,38 @@
   flex-direction: column;
   justify-content: start;
   gap: 7rem;
-  /* background-color: aqua; */
 }
+
 .filter-price,
 .filter-brand {
   display: flex;
   flex-direction: column;
 }
-.filter label {
-  font-size: 1.3rem;
 
+.filter label {
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
+
 .filter-price select,
 .filter-brand select {
   padding: 0.5rem;
   border-radius: 4px;
 }
+
 .filter-price select option,
 .filter-brand select option {
   font-size: 0.8rem;
 }
+
 @media (max-width: 768px) {
   .filter {
     padding: 1rem;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-items: center; */
     gap: 1rem;
-    /* width: 20%; */
   }
+
   .filter-price,
   .filter-brand{
     width: 47%;
@@ -43,16 +45,15 @@
  
   .filter label {
     font-size: 1rem;
- 
-
-    /* margin-bottom: 0.5rem; */
   }
+
   .filter-price select,
   .filter-brand select {
     padding:0.2rem;
     border-radius: 4px;
     min-width: 200px;
   }
+
   .filter-price select option,
   .filter-brand select option {
     font-size: 0.8rem;

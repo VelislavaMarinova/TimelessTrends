@@ -3,24 +3,19 @@
         href=""
         class="product-link"
     >
-
         <div
             class="product-image"
             [style.background-image]="'url(' + product.thumbnail + ')'"
         >
-
         </div>
-
         <div class="product-info">
             <h4 class="product-title">{{product.title | shorten: 30}} </h4>
             <p class="product-description">{{product.description | shorten:90 }}</p>
 
             <p class="product-price">{{product.price}}$</p>
-
         </div>
     </a>
     <div class="product-rating">
-
         <!-- <mat-toolbar></mat-toolbar> -->
         <app-rating (onRating)="Handle($event)"></app-rating>
         <span> {{product.rating}}</span>
@@ -33,6 +28,4 @@
         <i class="fa-solid fa-cart-shopping"></i>
         Add to cart
     </button>
-
-
 </li>

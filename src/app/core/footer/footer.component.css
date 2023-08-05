@@ -9,9 +9,11 @@
 
 .footer-header {
   display: flex;
+  gap: 2rem;
+  padding: 2rem;
 }
 .footer-header h2 {
-  margin-right: 3rem;
+  margin: unset;
 }
 .footer-header ul {
   display: flex;
@@ -25,11 +27,15 @@
   display: flex;
   gap: 10rem;
   font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.footer-body li{
+  margin-bottom: 0.5rem;
 }
 
 .footer-body h4 {
   text-decoration: underline;
+  text-underline-offset:0.25rem ;
 }
 .footer-end {
   text-align: center;

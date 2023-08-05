@@ -5,7 +5,7 @@
     >
         <app-loader />
     </div>
-    <div *ngIf="!isLoading">
+    <div *ngIf="!isLoading" class="product-list-wrapper">
         <div class="product-list-header-wrapper">
 
             <div class="product-list-header-img">
@@ -58,9 +58,12 @@
                 >Load More</button>
             </div>
         </div>
-        <p
-            class="no-products"
-            *ngIf="noProductsInTheList"
-        >No products in {{category}} category!<i class="fa-solid fa-magnifying-glass"></i></p>
+
+        <div class="product-list-ni-products">
+            <p
+                class="no-products"
+                *ngIf="noProductsInTheList"
+            >No products in {{category}} category!<i class="fa-solid fa-magnifying-glass"></i></p>
+        </div>
     </div>
 </div>

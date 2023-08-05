@@ -4,6 +4,10 @@ This project is generated with Angular version 16.1.4. The project is about list
 
 ![Timeless Trends](src/assets/test.png)
 
+## Install dependencies: 
+
+`npm install`
+
 ## Run project:
 
 Run `ng serve` for a dev server. 

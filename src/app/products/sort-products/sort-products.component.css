@@ -1,14 +1,22 @@
 .sort {
-  margin-top: 7rem;
+  height: 100%;
   padding-right: 2rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.5rem;
 }
+
+.sort-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .sort label {
   font-size: 1.2rem;
-
-  margin-right: 0.5rem;
 }
+
 .sort select {
   padding: 0.5rem;
   border-radius: 4px;
@@ -18,30 +26,37 @@
   font-size: 1.1rem;
   padding: 1rem;
 }
+
 .sort button {
   font-size: 1.5rem;
   font-weight: 200;
   background-color: var(--color-paynesgray);
   border-radius: 4px;
   color: white;
+  margin-left: 1rem;
 }
 
 @media (max-width: 768px) {
   .sort {
-    margin: 0.5rem 0;
-    margin-left: 0;
+    padding-bottom: unset;
+    margin: unset;
+    width: 100%;
+    justify-content: start;
   }
+
   .sort label {
     font-size: 1rem;
   }
+
   .sort select {
     padding: 0.2rem;
-    width: 41%;
+    min-width: 200px;
   }
 
   .sort select option {
     font-size: 0.8rem;
   }
+
   .sort button {
     font-size: 1.1rem;
     background-color: var(--color-paynesgray);

@@ -32,10 +32,11 @@
   background-color: var(--color-red);
   padding: 0.1rem 0.6rem 0.1rem 0.5rem;
   border-radius: 15px;
-}
-.header-account ul span {
   font-size: 1.5rem;
+  text-align: center;
+  color: white;
 }
+
 
 nav {
   position: fixed;
@@ -105,16 +106,22 @@ nav .icon-burger .line {
   .header-account ul{
 	gap:1rem;
   }
-  .header-nav .container {
-	padding-inline: 2rem;
-  
-  }
+
 
   .header-account .logo {
     font-size: 1.5rem;
   }
   .header-account ul {
-    font-size: 1.5rem;
+    font-size: 1rem;
+  }
+
+
+  .header-account .cart-products {
+    background-color: var(--color-red);
+    padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+    border-radius: 15px;
+    font-size: 1rem;
+   
   }
 
   nav .links {
@@ -146,7 +153,7 @@ nav .icon-burger .line {
   nav .icon-burger {
     display: block;
 	position: static;
-	margin-top: 2.1rem;
+	margin-top: 2.2rem;
   }
   nav :checked ~ .icon-burger .line:nth-child(1) {
     transform: translateY(10px) rotate(225deg);

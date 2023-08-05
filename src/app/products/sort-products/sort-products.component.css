@@ -23,13 +23,14 @@
 }
 
 .sort select option {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   padding: 1rem;
 }
 
 .sort button {
-  font-size: 1.5rem;
-  font-weight: 200;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   background-color: var(--color-paynesgray);
   border-radius: 4px;
   color: white;
@@ -37,6 +38,7 @@
 }
 
 @media (max-width: 768px) {
+
   .sort {
     padding-bottom: unset;
     margin: unset;
@@ -53,14 +55,8 @@
     min-width: 200px;
   }
 
-  .sort select option {
-    font-size: 0.8rem;
-  }
-
   .sort button {
-    font-size: 1.1rem;
-    background-color: var(--color-paynesgray);
-    border-radius: 4px;
-    color: white;
+ 
+    padding: 0.2rem 0.5rem;
   }
 }

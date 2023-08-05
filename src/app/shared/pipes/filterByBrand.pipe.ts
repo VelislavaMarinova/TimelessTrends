@@ -8,19 +8,17 @@ export class FilterPipeByBrand implements PipeTransform {
 
     transform(value: Product[], args: any[]): any {
         const filterField = args[0];
-        // console.log(filterField);
         
         let filterResult
       
         if (filterField=='choose') {
            
-            return value
+            return value;
         }else if(filterField === 'remove'){
-            return value
+            return value;
         }
         filterResult = value.filter(p => p.brand === filterField)
-        return filterResult
-
+        return filterResult;
     }
 
 }

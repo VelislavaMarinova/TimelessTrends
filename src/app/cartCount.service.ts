@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartCountService {
     private cartCountSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
- 
 
     updateCartCount(count: number) {
         this.cartCountSubject.next(count);

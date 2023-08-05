@@ -10,7 +10,6 @@ export class DropdownDirective {
   
   @HostListener('click', ['$event.target'])
   onClick(target: HTMLElement) {
-    // Uncheck the .icon-burger (checkbox) if a navigation link is clicked
     if (target.tagName === 'A' && this.isMenuOpen) {
       const checkbox = document.getElementById('nav-toggle') as HTMLInputElement;
       if (checkbox) {

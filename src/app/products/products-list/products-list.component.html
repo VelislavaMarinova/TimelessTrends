@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="product-list-sort">
+            <div *ngIf="!noProductsInTheList" class="product-list-sort" >
 
                 <app-sort-products
                     (sortChange)="onSortChange($event)"

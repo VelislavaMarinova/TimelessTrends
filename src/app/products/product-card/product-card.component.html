@@ -17,7 +17,10 @@
     </a>
     <div class="product-rating">
         <!-- <mat-toolbar></mat-toolbar> -->
-        <app-rating (onRating)="Handle($event)" [SelectedStar]="product.rating"></app-rating>
+        <app-rating
+            (onRating)="Handle($event)"
+            [SelectedStar]="product.rating"
+        ></app-rating>
         <span> {{product.rating}}</span>
 
     </div>
@@ -26,6 +29,7 @@
         class="product-btn"
     >
         <i class="fa-solid fa-cart-shopping"></i>
-        Add to cart
+            <p> Add to cart</p>
+        
     </button>
 </li>

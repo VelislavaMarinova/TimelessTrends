@@ -74,18 +74,23 @@
 .product .product-btn {
   width: 100%;
   color: white;
-  display: inline-block;
   text-decoration: none;
   background-color: var(--color-paynesgray);
   border-radius: 0.6rem;
   margin-top: 0.5rem;
-  font-size: 18px;
+  font-size: 1rem;
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   border:none;
   transition: all 0.2s ease-in-out;
+}
+.product .product-btn p{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product .product-btn:hover{
@@ -101,7 +106,7 @@
   height: 100%;
   background-color: var(--color-red);
   padding: 1rem;
-  margin-right: 2rem;
+ 
   transition: all 0.2s ease-in-out;
 }
 

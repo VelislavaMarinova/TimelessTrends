@@ -15,7 +15,7 @@ This project is generated with Angular version 16.1.4. The project is about list
 3. Product Grid
   - Contains a set of product tiles positioned in a grid-like structure.
   - The number of products loaded first are nine and user can click load more button to load nine more products. If there are no more porducts to load, load more button is       disabled.
-  - Product tile - each product tile should contain:
+  - Product card - each product  contains:
       - Image of the product
       - Name of the product
       - Short description

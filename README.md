@@ -28,6 +28,7 @@ This project is generated with Angular version 16.1.4. The project is about list
 5. Filtering mechanism:
   - filter by price range
   - filter by brand
+6.Footer
 
 
 ![Timeless Trends](src/assets/page.png)

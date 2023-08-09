@@ -19,7 +19,7 @@ This project is generated with Angular version 16.1.4. The project is about list
         i. Image of the product
         ii. Name of the product
         iii. Short description
-        iv. Price (some products should have discounted price)
+        iv. Price 
         v. Ratings ‘stars’.
         vi. Add to cart button – a success alert is displayed on click
 4. Sorting mechanism:

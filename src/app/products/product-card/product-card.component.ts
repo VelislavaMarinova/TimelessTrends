@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../types/product';
 import { CartCountService } from 'src/app/cartCount.service';
 
@@ -7,11 +7,15 @@ import { CartCountService } from 'src/app/cartCount.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   @Input() product: Product;
   addCountToCart:number=1
   constructor(private cartCountService: CartCountService){};
 
+  ngOnInit(): void {
+    console.log(this.product);
+    
+  }
   Handle(event: number) {
     this.product.rating = Number(((this.product.rating + event) / 2).toFixed(2))
     alert(`You rate ${event}`);

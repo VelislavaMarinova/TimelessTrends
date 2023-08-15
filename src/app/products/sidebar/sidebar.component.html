@@ -3,7 +3,7 @@
         <label class="label">Price</label>
         <select
             [(ngModel)]="filterByPrice"
-            (ngModelChange)="onPriceFilterChange()"
+            (change)="onPriceFilterChange()"
         >
             <option
                 value="choose"

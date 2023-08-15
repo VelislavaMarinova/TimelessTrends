@@ -3,36 +3,15 @@
         <label class="label">Sort</label>
         <select
             [(ngModel)]="sortByParam"
-            (ngModelChange)="onSortChange()"
+            (change)="onSortChange()"
         >
-            <option value="title">Product name</option>
-            <option value="price">Price</option>
+        <option value="choose" disabled>Choose option</option>
+            <option value="title asc">Product name asc</option>
+            <option value="title desc">Product name desc</option>
+            <option value="price asc">Price asc</option>
+            <option value="price desc">Price desc</option>
+
         </select>
-        <button
-            *ngIf="sortByParam && sortDirection"
-            type="button"
-            (click)="onSortDirection()"
-        >
-            <div *ngIf="sortByParam === 'title'">
-                <i
-                    *ngIf="sortDirection === 'asc'"
-                    class="fa-solid fa-arrow-up-z-a"
-                ></i>
-                <i
-                    *ngIf="sortDirection === 'desc'"
-                    class="fa-solid fa-arrow-down-z-a"
-                ></i>
-            </div>
-            <div *ngIf="sortByParam === 'price'">
-                <i
-                    *ngIf="sortDirection === 'asc'"
-                    class="fa-solid fa-arrow-up-1-9"
-                ></i>
-                <i
-                    *ngIf="sortDirection === 'desc'"
-                    class="fa-solid fa-arrow-down-9-1"
-                ></i>
-            </div>
-        </button>
+       
     </div>
 </div>

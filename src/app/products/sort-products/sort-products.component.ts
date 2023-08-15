@@ -12,10 +12,6 @@ export class SortProductsComponent {
   sortByParam: string = 'title';
   sortDirection = "asc";
 
-  onSortDirection() {
-    this.sortDirection = this.sortDirection === 'desc' ? 'asc' : 'desc';
-    this.sortDirectionChange.emit(this.sortDirection)
-  }
 
   onSortChange() {
     this.sortChange.emit(this.sortByParam)

@@ -1,39 +1,67 @@
 <div class="filter">
-    <div class="filter-price">
-        <label class="label">Price</label>
-        <select
-            [(ngModel)]="filterByPrice"
-            (change)="onPriceFilterChange()"
-        >
-            <option
-                value="choose"
-                disabled
-                hidden
-            >choose option...</option>
-            <option value="remove">remove filter</option>
-            <option
-                value="{{range}}"
-                *ngFor="let range of priceRanges"
-            >({{range}})$</option>
+    <form
+        (ngSubmit)="onSubmit()"
+        #f="ngForm"
+    >
+        <div class="filter-price">
 
-        </select>
-    </div>
-    <div class="filter-brand">
-        <label class="label">Brand</label>
-        <select
-            [(ngModel)]="filterByBrand"
-            (ngModelChange)="onBrandFilterChange()"
-        >
-            <option
-                value="choose"
-                disabled
-                hidden
-            >choose option...</option>
-            <option value="remove">remove filter</option>
-            <option
-                *ngFor="let brand of brands"
-                value="{{brand}}"
-            >{{brand }}</option>
-        </select>
-    </div>
+            <label class="label">Price</label>
+
+            <div
+                *ngFor="let range of priceRanges"
+                class="radio-item"
+            >
+                <input
+                    type="radio"
+                    ngModel
+                    [value]="range"
+                    id="{{range}}-price"
+                    name="priceRange"
+                />
+                <label for="{{range}}-price">{{range}}$</label>
+                
+            </div>
+            <div>
+                <input
+                    type="radio"
+                    value="remove"
+                    id="remove-price"
+                    name="priceRange"
+                />
+                <label for="remove-price">Remove filter</label>
+            </div>
+
+
+        </div>
+        <div class="filter-brand">
+
+            <label class="label">Brand</label>
+
+            <div
+                *ngFor="let brand of uniqueBrands"
+                class="radio-item"
+            >
+                <input
+                    type="radio"
+                    ngModel
+                    [value]="brand"
+                    id="{{brand}}"
+                    name="brand"
+                />
+                <label for="{{brand}}">{{brand}}$</label>
+            </div>
+            <div class="radio-item">
+                <input
+                    type="radio"
+                    value="remove"
+                    id="remove-brand"
+                    name="brand"
+                />
+                <label for="remove-brand">Remove filter</label>
+            </div>
+        </div>
+        <button type="submit">Filter</button>
+    </form>
+
+ 
 </div>

@@ -18,15 +18,15 @@ export class ProductsListComponent implements OnInit {
   category: string | undefined;
 
   loadMore: boolean = true;
-  sortByParam:string;
-  sortDirection = "asc";
-  filterByPrice = "choose";
-  filterByBrand = "choose";
+  sortByParam: string | undefined;
+  // sortDirection: string | undefined;
+  filterByPrice: string;
+  filterByBrand: string | undefined;
   categoryImage: string;
   filterdLength = 0;
 
-  priceMin: number = 1;
-  priceMax: number = 200;
+  priceMin: number | undefined;
+  priceMax: number | undefined;
   order: string;
   sortOption: string;
   page: number = 1;
@@ -39,20 +39,27 @@ export class ProductsListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { }
 
-  onBrandFilterChange(selectedBrand: string) {
-    this.filterByBrand = selectedBrand;
-    console.log(this.filterByBrand.split('-'));
+  handleFormFilterChange(formValues: any) {
+    console.log('Form values:', formValues.value);
 
-  }
+    if (formValues && formValues.value.priceRange) {
+      this.filterByPrice = formValues.value.priceRange;
+      const [priceMinStr, priceMaxStr] = this.filterByPrice.split("-");
+      this.priceMin = Number(priceMinStr);
+      this.priceMax = Number(priceMaxStr);
+    }
 
-  onPriceFilterChange(selectedPrice: string) {
-    this.filterByPrice = selectedPrice;
-    const [priceMinStr, priceMaxStr] = this.filterByPrice.split("-");
-    this.priceMin = Number(priceMinStr);
-    this.priceMax = Number(priceMaxStr);
+    if (formValues && formValues.value.brand && formValues.value.brand !== '') {
+      this.filterByBrand = formValues.value.brand;
+    } else {
+      this.filterByBrand = undefined;
+    }
+    console.log(this.priceMin, this.priceMax);
+    console.log(this.filterByBrand);
+
+
     this.page = 1;
     this.loadData();
-    console.log(this.filterByPrice.split("-"));
 
   }
 
@@ -66,31 +73,36 @@ export class ProductsListComponent implements OnInit {
 
   }
 
-  onSortDirectionChange(selectedSortDirection: string) {
-    this.sortDirection = selectedSortDirection;
-    console.log(this.sortDirection); this.loadData()
-  }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params: Params) => {
+      console.log("onInit");
 
-    this.loadData();
+      this.category = params.get('category'); 
+      this.isLoading = true;
+
+      this.priceMax = undefined;
+      this.priceMin = undefined;
+      this.filterByBrand = undefined;
+      this.sortByParam = undefined;
+      this.sortOption=undefined;
+      this.order=undefined;
+      // this.sortDirection = "asc";
+
+      // Load data for the new category
+      this.loadData();
+    });
   }
 
   loadData() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.category = params['category'];
-      this.isLoading = true;
-
-      console.log(this.sortByParam, "sort");
-      console.log(this.sortDirection, "direction");
-
-
+  
       this.apiService.getProductsByCategoryPaginate(
-        this.category!,
+        this.category,
         this.sortOption,
         this.order,
         this.priceMin,
         this.priceMax,
+        this.filterByBrand,
         this.page,
         this.limit
       ).subscribe(
@@ -98,11 +110,12 @@ export class ProductsListComponent implements OnInit {
           next: (response: HttpResponse<Product[]>) => {
             const totalCountHeader = response.headers.get('X-Total-Count');
             this.totalProducts = Number(totalCountHeader);
+
             this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit)
-            console.log(this.totalPages);
+         
             this.products = response.body
-            // this.products = response;
-            console.log(this.products);
+          
+          
 
             if (this.products.length === 0) {
               this.noProductsInTheList = true;
@@ -114,7 +127,7 @@ export class ProductsListComponent implements OnInit {
               this.loadMore = true;
               this.noProductsInTheList = false;
             }
-       
+
             this.isLoading = false;
 
           },
@@ -123,7 +136,7 @@ export class ProductsListComponent implements OnInit {
             console.log(`Error ${err}`);
           }
         })
-    })
+    
   }
 
   onLoadMore() {
@@ -141,6 +154,7 @@ export class ProductsListComponent implements OnInit {
         this.order,
         this.priceMin,
         this.priceMax,
+        this.filterByBrand,
         this.page,
         this.limit
       ).subscribe(res => {

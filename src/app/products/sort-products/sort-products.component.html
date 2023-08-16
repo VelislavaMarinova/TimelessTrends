@@ -3,7 +3,7 @@
         <label class="label">Sort</label>
         <select
             [(ngModel)]="sortByParam"
-            (change)="onSortChange()"
+            (ngModelChange)="onSortChange()"
         >
         <option value="choose" disabled>Choose option</option>
             <option value="title asc">Product name asc</option>

@@ -18,7 +18,7 @@ export class ProductsListComponent implements OnInit {
   category: string | undefined;
 
   loadMore: boolean = true;
-  sortByParam = 'choose';
+  sortByParam:string;
   sortDirection = "asc";
   filterByPrice = "choose";
   filterByBrand = "choose";
@@ -61,6 +61,7 @@ export class ProductsListComponent implements OnInit {
     const [sortOption, order] = this.sortByParam.split(" ")
     this.sortOption = sortOption;
     this.order = order;
+    this.page = 1;
     this.loadData()
 
   }

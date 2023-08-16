@@ -22,7 +22,8 @@
                 <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
                     consequuntur.</p>
                 <div class="product-list-header-loaded-products">
-                    <p *ngIf="!noProductsInTheList">{{products.length}} products loaded from total: {{totalProducts}}</p>
+                    <p *ngIf="!noProductsInTheList">{{products.length}} products loaded from total: {{totalProducts}}
+                    </p>
                     <p *ngIf="filterByPrice!=='choose'">{{(productsToLoad |filterByPrice:[filterByPrice])?.length}}
                         products filtered by price range {{filterByPrice}}$</p>
                     <p *ngIf="filterByBrand!=='choose'">{{(productsToLoad |filterByBrand:[filterByBrand])?.length}}
@@ -30,11 +31,14 @@
                 </div>
 
             </div>
-            <div *ngIf="!noProductsInTheList" class="product-list-sort" >
+            <div
+                *ngIf="!noProductsInTheList"
+                class="product-list-sort"
+            >
 
                 <app-sort-products
+                    [selectedOption]="sortByParam"
                     (sortChange)="onSortChange($event)"
-                    (sortDirectionChange)="onSortDirectionChange($event)"
                 />
             </div>
         </div>
@@ -45,6 +49,7 @@
             <div class="product-list-filters">
                 <app-sidebar
                     [products]="products"
+                    [category]="category"
                     (brandFilterChange)="onBrandFilterChange($event)"
                     (priceFilterChange)="onPriceFilterChange($event)"
                 />
@@ -53,7 +58,7 @@
             <div class="product-list-cards">
                 <ul class="all-cards">
                     <app-product-card
-                        *ngFor="let product of products"  
+                        *ngFor="let product of products"
                         [product]="product"
                     />
                 </ul>

@@ -18,23 +18,23 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription | undefined;
 
-  uniqueBrands: string[] = [];
-  priceRanges: string[] = ["0-49", "50-99", "100-149", "150-199", "more than 199"]
-  filterByPrice: string;
-  filterByBrand: string = 'choose';
+  uniqueBrands: string[] = ["remove filter"];
+  priceRanges: string[] = ["0-49", "50-99", "100-149", "150-199", "more than 199", "remove filter"]
+  // filterByPrice: string;
+  // filterByBrand: string;
 
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.subscription = this.apiService.getUniqueBrandsByCategory(this.category).subscribe(brands => {
-      this.uniqueBrands = brands;
+      this.uniqueBrands = [...brands,...this.uniqueBrands];
     });
   }
 
   onSubmit() {
-    console.log(this.filterForm.value);
-     this.formFilterCange.emit(this.filterForm)
+    console.log(this.filterForm.value, 'sidebar');
+    this.formFilterCange.emit(this.filterForm)
 
   }
 

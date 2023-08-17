@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Product } from './types/product';
-import { Observable, map } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,33 @@ export class ApiService {
   getUniqueBrandsByCategory(category: string): Observable<string[]> {
     return this.getProductsByCategory(category).pipe(
       map(products => [...new Set(products.map(product => product.brand))])
+    );
+  }
+
+  getTotalProductsCountIfFilter(
+    category: string,
+    priceMin: number,
+    priceMax: number,
+    brand: string | undefined
+  ): Observable<number> {
+    const { apiUrl } = environment;
+    let url = `${apiUrl}?category=${category}`;
+  
+   
+    if (priceMin !== undefined && priceMax !== undefined) {
+      url += `&price_gte=${priceMin}&price_lte=${priceMax}`;
+    }
+    if (brand !== undefined) {
+      url += `&brand=${brand}`;
+    }
+  
+    return this.http.get<Product[]>(url, { observe: 'response' }).pipe(
+      map(response => {
+        const totalCount = response.body.length
+       
+        
+        return totalCount;
+      })
     );
   }
 }

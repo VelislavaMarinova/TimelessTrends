@@ -22,12 +22,17 @@
                 <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
                     consequuntur.</p>
                 <div class="product-list-header-loaded-products">
-                    <p *ngIf="!noProductsInTheList">{{products.length}} products loaded from total: {{totalProducts}}
+                    <p *ngIf="!noProductsInTheList">{{category}} ({{totalProducts}})
                     </p>
-                    <p *ngIf="filterByPrice!=='choose'">{{(productsToLoad |filterByPrice:[filterByPrice])?.length}}
-                        products filtered by price range {{filterByPrice}}$</p>
-                    <p *ngIf="filterByBrand!=='choose'">{{(productsToLoad |filterByBrand:[filterByBrand])?.length}}
-                        products filtered by brand {{filterByBrand}}</p>
+                 
+                    <select  [(ngModel)]="limit"
+                    (ngModelChange)="onPerPageChange()">
+                        <option value="8">8 per page</option>
+                        <option value="16">16 per page</option>
+                    </select>
+                    <p *ngIf="isFilterAdded">{{totalProductsAfterFilter}}
+                        products filtered by {{filterByPrice? "price range: "+filterByPrice+"$": ''}} {{filterByBrand? "and brand: "+filterByBrand:''}}</p>
+                    
                 </div>
 
             </div>
@@ -50,8 +55,7 @@
                 <app-sidebar
                     [products]="products"
                     [category]="category"
-                    (brandFilterChange)="onBrandFilterChange($event)"
-                    (priceFilterChange)="onPriceFilterChange($event)"
+                    (formFilterCange)="handleFormFilterChange($event)"
                 />
             </div>
 

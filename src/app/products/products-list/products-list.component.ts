@@ -18,41 +18,91 @@ export class ProductsListComponent implements OnInit {
   category: string | undefined;
 
   loadMore: boolean = true;
-  sortByParam:string;
-  sortDirection = "asc";
-  filterByPrice = "choose";
-  filterByBrand = "choose";
+  sortByParam: string | undefined;
+  // sortDirection: string | undefined;
+  filterByPrice: string;
+  filterByBrand: string | undefined;
   categoryImage: string;
   filterdLength = 0;
 
-  priceMin: number = 1;
-  priceMax: number = 200;
+  priceMin: number | undefined;
+  priceMax: number | undefined;
   order: string;
   sortOption: string;
   page: number = 1;
-  limit: number = 12;
+  limit: number = 8;
   totalProducts: number = 0;
   totalPages: number = 0;
+  isFilterAdded = false;
+  totalProductsAfterFilter: number;
+
+
 
   constructor(
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
   ) { }
 
-  onBrandFilterChange(selectedBrand: string) {
-    this.filterByBrand = selectedBrand;
-    console.log(this.filterByBrand.split('-'));
+  onPerPageChange() {
+    // console.log('Items per page changed:', this.perPage);
+    // this.limit = this.perPage;
+    this.loadData()
 
   }
 
-  onPriceFilterChange(selectedPrice: string) {
-    this.filterByPrice = selectedPrice;
-    const [priceMinStr, priceMaxStr] = this.filterByPrice.split("-");
-    this.priceMin = Number(priceMinStr);
-    this.priceMax = Number(priceMaxStr);
+  handleFormFilterChange(formValues: any) {
+    console.log('Form values:', formValues.value);
+    this.isFilterAdded = true;
+
+    if (formValues.value.priceRange) {
+      this.filterByPrice = formValues.value.priceRange;
+      console.log(this.filterByPrice, "plc");
+      if (this.filterByPrice === 'more than 199') {
+        this.priceMin = Number(this.filterByPrice.split(" ")[2]);
+        this.priceMax = 10000
+
+      } else if (this.filterByPrice === 'remove filter') {
+        this.filterByPrice = undefined
+        this.priceMin = undefined;
+        this.priceMax = undefined;
+      }
+      else {
+        const [priceMinStr, priceMaxStr] = this.filterByPrice.split("-");
+        this.priceMin = Number(priceMinStr);
+        this.priceMax = Number(priceMaxStr);
+      }
+
+    }
+
+    if (formValues.value.brand) {
+      if (formValues.value.brand !== 'remove filter') {
+        this.filterByBrand = formValues.value.brand;
+      } else {
+        this.filterByBrand = undefined;
+      }
+    } else {
+      this.filterByBrand = undefined;
+    }
+
+    if (this.filterByBrand === undefined && this.filterByPrice === undefined) {
+      this.isFilterAdded = false
+    }
+    console.log(this.priceMin, this.priceMax);
+    console.log(this.filterByBrand);
+
+
     this.page = 1;
+
+    this.apiService.getTotalProductsCountIfFilter(this.category,
+      this.priceMin,
+      this.priceMax,
+      this.filterByBrand).subscribe(totalCount => {
+        this.totalProductsAfterFilter = totalCount;
+      })
+      console.log(this.totalProductsAfterFilter);
+      
+
     this.loadData();
-    console.log(this.filterByPrice.split("-"));
 
   }
 
@@ -66,65 +116,83 @@ export class ProductsListComponent implements OnInit {
 
   }
 
-  onSortDirectionChange(selectedSortDirection: string) {
-    this.sortDirection = selectedSortDirection;
-    console.log(this.sortDirection); this.loadData()
-  }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params: Params) => {
+      console.log("onInit");
 
-    this.loadData();
+      this.category = params.get('category');
+      this.isLoading = true;
+
+      this.priceMax = undefined;
+      this.priceMin = undefined;
+      this.filterByBrand = undefined;
+      this.sortByParam = undefined;
+      this.sortOption = undefined;
+      this.order = undefined;
+      this.totalProducts = 0;
+      this.isFilterAdded = false;
+      this.page = 1
+      this.limit = 8
+      // this.sortDirection = "asc";
+
+      // Load data for the new category
+      this.loadData();
+    });
   }
 
   loadData() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.category = params['category'];
-      this.isLoading = true;
 
-      console.log(this.sortByParam, "sort");
-      console.log(this.sortDirection, "direction");
+    this.apiService.getProductsByCategoryPaginate(
+      this.category,
+      this.sortOption,
+      this.order,
+      this.priceMin,
+      this.priceMax,
+      this.filterByBrand,
+      this.page,
+      this.limit
+    ).subscribe(
+      {
+        next: (response: HttpResponse<Product[]>) => {
+          const totalCountHeader = response.headers.get('X-Total-Count');
+          this.products = response.body
 
-
-      this.apiService.getProductsByCategoryPaginate(
-        this.category!,
-        this.sortOption,
-        this.order,
-        this.priceMin,
-        this.priceMax,
-        this.page,
-        this.limit
-      ).subscribe(
-        {
-          next: (response: HttpResponse<Product[]>) => {
-            const totalCountHeader = response.headers.get('X-Total-Count');
+          if (!this.isFilterAdded) {
             this.totalProducts = Number(totalCountHeader);
             this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit)
-            console.log(this.totalPages);
-            this.products = response.body
-            // this.products = response;
-            console.log(this.products);
 
-            if (this.products.length === 0) {
-              this.noProductsInTheList = true;
-              this.loadMore = false;
-            } else if (this.products.length < this.limit) {
-              this.noProductsInTheList = false;
-              this.loadMore = false
-            } else {
-              this.loadMore = true;
-              this.noProductsInTheList = false;
-            }
-       
-            this.isLoading = false;
-
-          },
-          error: (err) => {
-            this.isLoading = false
-            console.log(`Error ${err}`);
+          }else{
+            this.totalPages=Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
           }
-        })
-    })
+
+
+          if (this.products.length === 0 && !this.isFilterAdded) {
+            this.noProductsInTheList = true;
+
+          }
+
+          if (this.products.length === 0) {
+            this.loadMore = false;
+          } else if (this.products.length < this.limit) {
+            this.noProductsInTheList = false;
+            this.loadMore = false
+          } else {
+            this.loadMore = true;
+            this.noProductsInTheList = false;
+          }
+
+          this.isLoading = false;
+
+        },
+        error: (err) => {
+          this.isLoading = false
+          console.log(`Error ${err}`);
+        }
+      })
+
   }
+
 
   onLoadMore() {
     this.page++;
@@ -141,12 +209,11 @@ export class ProductsListComponent implements OnInit {
         this.order,
         this.priceMin,
         this.priceMax,
+        this.filterByBrand,
         this.page,
         this.limit
       ).subscribe(res => {
-
         this.products = [...this.products, ...res.body]
-        console.log(this.products);
       });
     }
   }

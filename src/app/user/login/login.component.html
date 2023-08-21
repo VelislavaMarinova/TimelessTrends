@@ -1,0 +1,91 @@
+<section class="login">
+  <div class="row">
+
+    <div class="form col-8 col-sm-8 col-md-8 col-lg-6 col-xl-4 offset-xl-1 login">
+      <div
+        *ngIf="isLoading"
+        class="loader"
+      >
+        <app-loader />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="error"
+      >
+        {{error}}
+      </div>
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        *ngIf="!isLoading"
+        class="login-form"
+      >
+        <div class="form-outline mb-4">
+          <label
+            class="form-label"
+            for="email"
+          ><span><i class="fas fa-envelope"></i></span> Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control form-control-lg"
+            placeholder="Enter a valid email address"
+            formControlName="email"
+          />
+          <small
+            class="input-help form-text "
+            *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
+          ><ng-container *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required!
+            </ng-container>
+            <ng-container *ngIf="loginForm.get('email')?.hasError('invalidEmail')">
+              Invalid email!
+            </ng-container>
+          </small>
+        </div>
+        <label
+          class="form-label"
+          for="password"
+        ><span><i class="fas fa-lock"></i></span>
+          Password
+        </label>
+        <div class="form-outline mb-3">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control form-control-lg"
+            placeholder="Enter password"
+            formControlName="password"
+          />
+          <small
+            class="input-help form-text"
+            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          >
+            <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required!
+            </ng-container>
+            <ng-container *ngIf="loginForm.get('password')?.hasError('minlength')">
+              Password must be at least 6 characters long.
+            </ng-container>
+          </small>
+        </div>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;"
+            [disabled]="!loginForm.valid"
+          >Login</button>
+          <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
+              routerLink="/user/register"
+              class="link"
+            >Register</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>

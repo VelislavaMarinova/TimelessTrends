@@ -17,7 +17,7 @@ export class ProductsListComponent implements OnInit {
   noProductsInTheList: boolean = false;
   category: string | undefined;
 
-  loadMore: boolean = true;
+  loadMore: boolean = false;
   sortByParam: string | undefined;
   // sortDirection: string | undefined;
   filterByPrice: string;
@@ -44,6 +44,7 @@ export class ProductsListComponent implements OnInit {
   ) { }
 
   onPerPageChange() {
+    this.page = 1
     // console.log('Items per page changed:', this.perPage);
     // this.limit = this.perPage;
     this.loadData()
@@ -99,8 +100,8 @@ export class ProductsListComponent implements OnInit {
       this.filterByBrand).subscribe(totalCount => {
         this.totalProductsAfterFilter = totalCount;
       })
-      console.log(this.totalProductsAfterFilter);
-      
+    console.log(this.totalProductsAfterFilter);
+
 
     this.loadData();
 
@@ -123,7 +124,7 @@ export class ProductsListComponent implements OnInit {
 
       this.category = params.get('category');
       this.isLoading = true;
-
+      this.loadMore = false
       this.priceMax = undefined;
       this.priceMin = undefined;
       this.filterByBrand = undefined;
@@ -158,28 +159,19 @@ export class ProductsListComponent implements OnInit {
           const totalCountHeader = response.headers.get('X-Total-Count');
           this.products = response.body
 
+
           if (!this.isFilterAdded) {
             this.totalProducts = Number(totalCountHeader);
-            this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit)
-
-          }else{
-            this.totalPages=Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
-          }
-
-
-          if (this.products.length === 0 && !this.isFilterAdded) {
-            this.noProductsInTheList = true;
-
-          }
-
-          if (this.products.length === 0) {
-            this.loadMore = false;
-          } else if (this.products.length < this.limit) {
-            this.noProductsInTheList = false;
-            this.loadMore = false
+            this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit);
+            if (this.products.length === 0) {
+              this.noProductsInTheList = true;
+            }
           } else {
-            this.loadMore = true;
-            this.noProductsInTheList = false;
+            this.totalPages = Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
+
+          }
+          if(this.totalPages>this.page){
+            this.loadMore=true
           }
 
           this.isLoading = false;

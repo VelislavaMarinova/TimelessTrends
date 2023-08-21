@@ -11,7 +11,11 @@ const routes: Routes = [
   {
     path: 'products/:category',
     component: ProductsListComponent,
-  }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+  },
 ];
 
 @NgModule({

@@ -1,13 +1,13 @@
 <header class="header">
     <div class="header-account">
         <div class="container">
-            <div class="logo">Timeless<strong>Trends</strong></div>
+            <div class="logo"><a routerLink="/">Timeless<strong>Trends</strong></a></div>
             <ul>
-                <li><i class="fa-solid fa-cart-shopping"></i><span class="cart-products">{{cartCount}}</span></li>
-                <li><i class="fa-solid fa-user"></i><span> Welcome</span></li>
-                <li><a routerLink="/auth/login">Login</a></li>
-                <li><a routerLink="/auth/register">Register</a></li>
-                <li><a href="">Logout</a></li>
+                <li *ngIf="isAuthenticated"><i class="fa-solid fa-cart-shopping"></i><span class="cart-products">{{cartCount}}</span></li>
+                <li  *ngIf="isAuthenticated"><i class="fa-solid fa-user"></i><span> Welcome {{username}}</span></li>
+                <li *ngIf="!isAuthenticated"><a routerLink="/auth/login">Login</a></li>
+                <li *ngIf="!isAuthenticated"><a routerLink="/auth/register">Register</a></li>
+                <li *ngIf="isAuthenticated" ><button (click)="onLogout()">Logout</button></li>
             </ul>
 
         </div>

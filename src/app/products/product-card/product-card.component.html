@@ -16,8 +16,12 @@
         </div>
     </a>
     <div class="product-rating">
-   
-        <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> {{product.rating}}</span>
+
+        <span>
+            <i *ngFor="let star of goldStars"class="fa-solid fa-star gold"></i>
+            <i *ngFor="let star of blueStars" class="fa-solid fa-star"></i>
+            {{product.rating}}
+        </span>
 
     </div>
     <button
@@ -25,7 +29,7 @@
         class="product-btn"
     >
         <i class="fa-solid fa-cart-shopping"></i>
-            <p> Add to cart</p>
-        
+        <p> Add to cart</p>
+
     </button>
 </li>

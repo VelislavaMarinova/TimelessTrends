@@ -79,7 +79,7 @@ export class UserService {
   logout() {
     this.user$$.next(undefined);
 
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['/auth/login']);
     localStorage.removeItem('userData')
   }
 

@@ -9,7 +9,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import {HttpClientModule}from '@angular/common/http';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { SharedModule } from './shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SidebarComponent } from './products/sidebar/sidebar.component';
 import { SortProductsComponent } from './products/sort-products/sort-products.component';
 import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
@@ -18,6 +18,7 @@ import { ApiService } from './api.service';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { ProductReviewsComponent } from './products/product-reviews/product-reviews.component';
 import { ProductReviewComponent } from './products/product-review/product-review.component';
+import { AddReviewComponent } from './products/add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductReviewComponent } from './products/product-review/product-review
     FilterPipeByPrice,
     ProductDetailsComponent,
     ProductReviewsComponent,
-    ProductReviewComponent
+    ProductReviewComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { ProductReviewComponent } from './products/product-review/product-review
     CoreModule,
     HttpClientModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     
   ],
   providers: [CartCountService,ApiService],

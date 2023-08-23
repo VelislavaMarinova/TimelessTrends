@@ -1,6 +1,6 @@
 export interface Review {
     
-    id: number,
+    id?: number,
     rating: number,
     review: string,
     productId: number,

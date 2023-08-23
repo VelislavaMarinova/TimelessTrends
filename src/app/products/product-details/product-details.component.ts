@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/user/user.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit,OnDestroy{
   product: Product | undefined
   isLoading: boolean = true;
   productRating: number = 0;
@@ -29,7 +29,7 @@ export class ProductDetailsComponent {
   isOwner: boolean = false;
   showReviews: boolean = false;
 
-  id: string = '';
+  id: number;
 
 
   constructor(
@@ -55,7 +55,7 @@ export class ProductDetailsComponent {
   loadData() {
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      this.id = params['productId'];
+      this.id =Number( params['productId']);
 
       this.apiService.getProduct(this.id).subscribe(
         {
@@ -65,7 +65,6 @@ export class ProductDetailsComponent {
             if (this.product.discountPercentage !== 0) {
               this.hasDiscount = true;
               this.priceAfterDiscount = this.product.price - Number((this.product.price * this.product.discountPercentage / 100).toFixed(2))
-
             }
 
             this.isLoading = false;
@@ -80,9 +79,7 @@ export class ProductDetailsComponent {
             } else {
               this.blueStars = new Array(5)
             }
-            // if(this.product.author===this.username){
-            //   this.isOwner=true;
-            // }
+         
           },
           error: (err) => {
             this.isLoading = false
@@ -93,12 +90,21 @@ export class ProductDetailsComponent {
     })
   }
 
-  showReviewsToggle() {
+  onShowReviewsToggle() {
     this.showReviews = !this.showReviews
   }
+  onAddReview(){
+this.router.navigate([`/products/${this.product.category}/${this.product.id}/add-review`])
+  }
+
   onAddToCart() {
 
     this.cartCountService.updateCartCount(this.addCountToCart);
     alert(`${this.product.title} added to cart`);
   }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+  }
+
 }

@@ -4,6 +4,22 @@
   align-items: center;
   padding-inline: 1rem;
 }
+.header-account .container a{
+  text-decoration: none;
+  color: var(--color-paynesgray);
+  border-bottom: 2px solid transparent;
+}
+
+.header-account .container a:hover{
+  border-bottom: 2px solid var(--color-paynesgray);
+}
+a.router-link-active,a:active { border-bottom: 2px solid var(--color-paynesgray);}
+a.active{
+  border-bottom: 2px solid var(--color-paynesgray);
+}
+.header-account .container a:active{
+  border-bottom: 2px solid var(--color-paynesgray);
+}
 .header-nav .container {
   display: flex;
   justify-content: space-between;

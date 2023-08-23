@@ -1,111 +1,122 @@
-
-.gold{
-    color: orange;
+.gold {
+  color: orange;
 }
-.container{
-    display: flex;
-    flex-direction: row;
-    padding-block: 3rem;
-    padding-inline: 1rem;
-    gap: 2rem;
+.container {
+  display: flex;
+  flex-direction: row;
+  padding-block: 3rem;
+  padding-inline: 1rem;
+  gap: 2rem;
 }
-.details-info{
-width: 50%;
+.details-info {
+  width: 50%;
 }
-.details-image{
-    width: 30%;
-    /* background-color: aqua; */
+.details-image {
+  width: 30%;
+  /* background-color: aqua; */
 }
-.details-image img{
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-.details-info h2{
-    font-size: 2rem;
-    font-weight: 600;
-}
-.details-info-description{
-    margin-top: 1rem;
-    font-size: 1.2rem;
+.details-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
-.details-info-description span{
-    font-weight: 600;
+.details-info h2 {
+  font-size: 2rem;
+  font-weight: 600;
 }
-.product-old-price{
-    text-decoration: line-through;
+.details-info-description {
+  margin-top: 1rem;
+  font-size: 1.2rem;
 }
-.red{
-    color:var(--color-red-text);
+
+.details-info-description span {
+  font-weight: 600;
+}
+.product-old-price {
+  text-decoration: line-through;
+}
+.red {
+  color: var(--color-red-text);
 }
 
 .product-btn {
-    width: 100%;
-    color: white;
-    text-decoration: none;
-    background-color: var(--color-paynesgray);
-    border-radius: 0.6rem;
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-    border:none;
-    transition: all 0.2s ease-in-out;
-    padding-inline: 1remrem;
-  }
-   .product-btn p{
-    width: 70%;
-    display: flex;
+  width: 100%;
+  height: 3rem;
+  color: white;
+  text-decoration: none;
+  background-color: var(--color-paynesgray);
+  border-radius: 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  border: none;
+  transition: all 0.2s ease-in-out;
+  padding-inline: 0;
+}
+.product-btn p {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-btn:hover {
+  color: var(--color-red);
+}
+.product-btn:disabled {
+  background-color: grey;
+  color: lightgray;
+}
+
+.product-btn i:disabled{
+    color: lightgray;
+    background-color: beige;
+}
+
+.product-btn:hover i {
+  color: var(--color-paynesgray);
+}
+
+.product-btn i {
+  height: 3.1rem;
+  background-color: var(--color-red);
+  padding: 1rem;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.buttons button {
+  background-color: var(--color-paynesgray);
+  padding: 0.5rem;
+  margin-top: 2rem;
+  color: white;
+  margin-right: 1rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-paynesgray);
+  transition: all 0.2s ease-in-out;
+}
+.buttons button:hover {
+  background-color: var(--color-silver);
+  color: var(--color-paynesgray);
+}
+.buttons button:disabled{
+    background-color: grey;
+    color: lightgray;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
-.product-btn:hover{
-    color: var(--color-red)
+  .details-info,
+  .details-image {
+    width: 80%;
+    /* background-color: aqua; */
   }
-  
-  .product-btn:hover i{
-    color: var(--color-paynesgray);
-   
-  }
-  
-  .product-btn i {
-    height: 100%;
-    background-color: var(--color-red);
-    padding: 1rem;
-   
-    transition: all 0.2s ease-in-out;
-  }
-
-  .buttons button{
-    background-color: var(--color-paynesgray);
-    padding: 0.5rem;
-    margin-top: 2rem;
-    color: white;
-    margin-right: 1rem;
-    border-radius: 4px;
-    border:1px solid var(--color-paynesgray);
-    transition: all 0.2s ease-in-out;
-    
-  }
-  .buttons button:hover{
-    background-color: var(--color-silver);
-    color: var(--color-paynesgray)
-  }
-
-  @media (max-width: 768px) {
-    .container{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .details-info,
-    .details-image{
-        width: 80%
-        /* background-color: aqua; */
-    }
-  }
+}

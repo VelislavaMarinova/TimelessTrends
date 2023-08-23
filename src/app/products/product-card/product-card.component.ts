@@ -1,13 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../types/product';
 import { CartCountService } from 'src/app/cartCount.service';
+import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent implements OnInit, OnDestroy {
   @Input() product: Product;
   starOne: boolean = false;
   goldStars: number[];
@@ -16,8 +18,14 @@ export class ProductCardComponent implements OnInit {
   productRating: number = 0;
   hasDiscount: boolean = false;
   priceAfterDiscount: number = 0;
-  
-  constructor(private cartCountService: CartCountService) { };
+
+  isAuthenticated = false;
+  private userSub!: Subscription;
+
+  constructor(
+    private cartCountService: CartCountService,
+    private userService: UserService
+  ) { };
 
   ngOnInit(): void {
     console.log(this.product);
@@ -37,6 +45,12 @@ export class ProductCardComponent implements OnInit {
       this.priceAfterDiscount = this.product.price - Number((this.product.price * this.product.discountPercentage / 100).toFixed(2))
     }
 
+    this.userSub = this.userService.user$$.subscribe(user => {
+      this.isAuthenticated = !!user;
+
+      console.log(user);
+
+    });
 
   }
 
@@ -51,5 +65,7 @@ export class ProductCardComponent implements OnInit {
     this.cartCountService.updateCartCount(this.addCountToCart);
     alert(`${this.product.title} added to cart`);
   }
-
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+  }
 }

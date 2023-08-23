@@ -1,0 +1,13 @@
+<div class="product-review">
+
+    <p>{{review?.username}} rate <span>         <i
+        *ngFor="let star of goldStars"
+        class="fa-solid fa-star gold"
+    ></i>
+    <i
+        *ngFor="let star of blueStars"
+        class="fa-solid fa-star"
+    ></i> {{review?.rating}}  </span></p>
+    
+    <p>Product reviw: {{review?.review}}</p>
+</div>

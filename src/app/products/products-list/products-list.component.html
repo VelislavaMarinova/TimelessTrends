@@ -13,26 +13,29 @@
 
             <div class="product-list-header-img">
                 <img
-                    src="{{categoryImage}}"
+                    src="https://images.pexels.com/photos/6612281/pexels-photo-6612281.jpeg?auto=compress&cs=tinysrgb&w=1600"
                     alt="{{category}}"
                 >
             </div>
             <div class="product-list-header">
                 <h1>{{category | uppercase}}</h1>
-                <p><span>Description:</span> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi,
-                    consequuntur.</p>
+                <p class="product-list-header-description"><span>Description:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit omnis facilis possimus, iusto minima itaque velit esse! Nisi, quos aut.</p>
                 <div class="product-list-header-loaded-products">
-                    <p *ngIf="!noProductsInTheList">{{category}} ({{totalProducts}})
-                    </p>
-                 
-                    <select  [(ngModel)]="limit"
-                    (ngModelChange)="onPerPageChange()">
-                        <option value="8">8 per page</option>
-                        <option value="16">16 per page</option>
-                    </select>
-                    <p *ngIf="isFilterAdded">{{totalProductsAfterFilter}}
-                        products filtered by {{filterByPrice? "price range: "+filterByPrice+"$": ''}} {{filterByBrand? "and brand: "+filterByBrand:''}}</p>
                     
+                    <select
+                    class="product-list-select-products-per-page"
+                    [(ngModel)]="limit"
+                    (ngModelChange)="onPerPageChange()"
+                    >
+                    <option value="8">8 per page</option>
+                    <option value="16">16 per page</option>
+                </select>
+                <span *ngIf="!noProductsInTheList">{{category}} ({{totalProducts}})
+                </span>
+                <p *ngIf="isFilterAdded">{{totalProductsAfterFilter}}
+                        products filtered by {{filterByPrice? "price range: "+filterByPrice+"$": ''}} {{filterByBrand?
+                        "and brand: "+filterByBrand:''}}</p>
+
                 </div>
 
             </div>

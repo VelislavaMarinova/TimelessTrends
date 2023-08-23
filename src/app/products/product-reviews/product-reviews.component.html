@@ -1,0 +1,8 @@
+<div *ngIf="product?.reviews.length">
+    <app-product-review *ngFor="let review of product?.reviews" [review]="review"/>
+
+</div>
+<div *ngIf="!product?.reviews.length">
+    <p>There are no reviews for {{product.title}}</p>
+</div>
+

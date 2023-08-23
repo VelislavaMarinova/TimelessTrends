@@ -16,6 +16,7 @@ export class ProductCardComponent implements OnInit {
   productRating: number = 0;
   hasDiscount: boolean = false;
   priceAfterDiscount: number = 0;
+  
   constructor(private cartCountService: CartCountService) { };
 
   ngOnInit(): void {

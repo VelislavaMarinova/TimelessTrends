@@ -7,11 +7,13 @@
         <button
         (click)="onAddToCart()"
         class="product-btn"
+        [disabled]="!isAuthenticated"
     >
         <i class="fa-solid fa-cart-shopping"></i>
         <p> Add to cart</p>
 
     </button>
+    <p *ngIf="!isAuthenticated"><a routerLink="/auth/login">Login</a> to add the product in the cart, to read and add reviews!</p>
     </div>
     <div class="details-info">
 
@@ -26,12 +28,12 @@
 
             <p class="product-discount-percentage details-info-description"><span>Discount: </span><span class="red">-
                     {{product.discountPercentage}}%</span></p>
-            <p class="product-old-price details-info-description"><span>Price: </span>{{product.price}}$</p>
+            <p class="product-old-price details-info-description"><span>Price: </span>{{product?.price}}$</p>
             <p class="product-price details-info-description"><span>Price after discount: </span><span
                     class="red">{{priceAfterDiscount}}$</span></p>
         </div>
         <div *ngIf="!hasDiscount">
-            <p class="product-price details-info-description">{{product.price}}$</p>
+            <p class="product-price details-info-description">{{product?.price}}$</p>
         </div>
     
 
@@ -53,8 +55,8 @@
             </div>
             <div class="buttons">
 
-                <button>Add review</button>
-                <button (click)="showReviewsToggle()">{{showReviews? "Hide reviews" :"Show reviews"}}</button>
+                <button [disabled]="!isAuthenticated" (click)="onAddReview()">Add review</button>
+                <button [disabled]="!isAuthenticated" (click)="onShowReviewsToggle()">{{showReviews? "Hide reviews" :"Show reviews"}}</button>
             </div>
         </div>
         <div

@@ -36,9 +36,10 @@
     <button
         (click)="onAddToCart()"
         class="product-btn"
+        [disabled]="!isAuthenticated"
     >
         <i class="fa-solid fa-cart-shopping"></i>
         <p> Add to cart</p>
-
     </button>
+    <p *ngIf="!isAuthenticated"><a routerLink="/auth/login">Login</a> to enable the button!</p>
 </li>

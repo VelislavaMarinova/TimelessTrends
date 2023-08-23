@@ -1,0 +1,30 @@
+<section class="container">
+    <h1>Add review about {{product?.title}}:</h1>
+    <form
+        class="add-review-form"
+        [formGroup]="reviewFormGroup"
+        (ngSubmit)="onSubmit()"
+    >
+        <label
+            class="label"
+            for="rating"
+        >Rate:</label>
+        <select
+            id="rating"
+            formControlName="rating"
+        >
+            <option
+                value="choose"
+                disabled
+            >Choose rating</option>
+            <option value="1">⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="5">⭐⭐⭐⭐⭐ </option>
+        </select>
+        <label for="review">Add review:</label>
+        <textarea name="" id="review" cols="30" rows="10"  formControlName="review"></textarea>
+        <button type="submit">Add review</button>
+    </form>
+</section>

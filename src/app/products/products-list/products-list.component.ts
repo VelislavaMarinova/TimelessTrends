@@ -69,8 +69,6 @@ export class ProductsListComponent implements OnInit {
 
   onPerPageChange() {
     this.page = 1
-    // console.log('Items per page changed:', this.perPage);
-    // this.limit = this.perPage;
     this.loadData()
 
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Product } from './types/product';
 import { Observable, map, switchMap } from 'rxjs';
+import { Review } from './types/review';
 
 @Injectable({
   providedIn: 'root'
@@ -83,10 +84,17 @@ export class ApiService {
     );
   }
 
-  getProduct(productId: string) {
+  getProduct(productId: number) {
     const { apiUrl } = environment;
     const url=`${apiUrl}/products/${productId}?_embed=reviews`
     return this.http.get<Product>(url)
+
+  }
+
+  addReview(review:Review){
+    const { apiUrl } = environment;
+    const url= `${apiUrl}/reviews`;
+    return this.http.post<Review>(url, review);
 
   }
 }

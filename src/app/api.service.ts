@@ -28,7 +28,7 @@ export class ApiService {
     page: number,
     limit: number): Observable<HttpResponse<Product[]>> {
     const { apiUrl } = environment;
-    let url = `${apiUrl}?category=${category}` //`;
+    let url = `${apiUrl}/products?_embed=reviews&category=${category}` //`;
 
     if (sort !== undefined && order !== undefined) {
       url += `&_sort=${sort}&_order=${order}`
@@ -46,7 +46,7 @@ export class ApiService {
 
   getProductsByCategory(category: string): Observable<Product[]> {
     const { apiUrl } = environment;
-    const url = `${apiUrl}?category=${category}`;
+    const url = `${apiUrl}/products?category=${category}`;
     return this.http.get<Product[]>(url);
   }
 
@@ -63,7 +63,7 @@ export class ApiService {
     brand: string | undefined
   ): Observable<number> {
     const { apiUrl } = environment;
-    let url = `${apiUrl}?category=${category}`;
+    let url = `${apiUrl}/products?category=${category}`;
   
    
     if (priceMin !== undefined && priceMax !== undefined) {
@@ -81,5 +81,12 @@ export class ApiService {
         return totalCount;
       })
     );
+  }
+
+  getProduct(productId: string) {
+    const { apiUrl } = environment;
+    const url=`${apiUrl}/products/${productId}?_embed=reviews`
+    return this.http.get<Product>(url)
+
   }
 }

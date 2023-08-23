@@ -4,11 +4,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 
 interface UserResponseData {
   accessToken: string;
-  user:{
+  user: {
     email: string;
     username: string;
     id: string;
@@ -29,8 +31,9 @@ export class UserService {
     email: string,
     password: string
   ) {
-
-    return this.http.post<UserResponseData>('https://json-server-app-707ded616226.herokuapp.com/login', {
+    const { apiUrl } = environment;
+    let url = `${apiUrl}/login`
+    return this.http.post<UserResponseData>(url, {
       email: email,
       password: password
     }).pipe(catchError(errorRes => {
@@ -43,7 +46,7 @@ export class UserService {
     }), tap(resData => {
 
       console.log(resData);
-      
+
       this.handleAuthenticaton(
         resData.user.id,
         resData.user.username,
@@ -59,14 +62,16 @@ export class UserService {
     email: string,
     password: string,
   ) {
-    return this.http.post<UserResponseData>('https://json-server-app-707ded616226.herokuapp.com/register', {
+    const { apiUrl } = environment;
+    let url = `${apiUrl}/register`
+    return this.http.post<UserResponseData>(url, {
       username: username,
       email: email,
       password: password
     }).pipe(catchError
       (this.handleError), tap(resData => {
-        console.log(resData,"data");
-        
+        console.log(resData, "data");
+
         this.handleAuthenticaton(
           resData.user.id,
           resData.user.username,

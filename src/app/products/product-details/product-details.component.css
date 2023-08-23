@@ -1,0 +1,7 @@
+.gold{
+    color: orange;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+}

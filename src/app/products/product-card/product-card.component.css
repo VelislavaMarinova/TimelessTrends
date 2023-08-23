@@ -9,13 +9,15 @@
   flex-direction: column;
   padding: 1rem;
   justify-content: space-around;
- height: 500px;
+  height: 500px;
   background: #ffffff;
   color: var(--color-paynesgray);
   text-align: center;
   border-radius: 8px;
   transition: all 0.3s;
 }
+
+.gold{color: orange;}
 
 .product .product-link {
   background-color: white;
@@ -24,6 +26,13 @@
   color: var(--color-paynesgray);
 
 }
+.product-old-price{
+  text-decoration: line-through;
+}
+/* .product-discount-percentage{
+  background-color: var(--color-red);
+  color: var(--color-paynesgray);
+} */
 
 .product .product-image {
   margin-bottom: 1rem;
@@ -124,5 +133,3 @@
     font-size: 1rem;
   }
 }
-
-.gold{color: orange;}

@@ -5,6 +5,7 @@
   --color-paynesgray-opacity: #2c3e5084;
   --color-paynesgray: #2c3e50;
   --color-red: #f07167;
+  --color-red-text: red;
   --color-text: #35454b;
 }
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -68,9 +69,10 @@ body {
   min-height: 100vh;
 }
 .container {
-  max-width: 1400px;
+  max-width: 1024px;
   margin: 0 auto;
   height: 100%;
+ 
 }
 
 li {

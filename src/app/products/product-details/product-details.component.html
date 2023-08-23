@@ -1,41 +1,69 @@
 <div class="container">
-    <div class="image">
-        <img src="{{product?.images[1]}}" alt="">
-    </div>
-    <div class="product-info">
+    <div class="details-image">
+        <img
+            src="{{product?.images[1]}}"
+            alt=""
+        >
+        <button
+        (click)="onAddToCart()"
+        class="product-btn"
+    >
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p> Add to cart</p>
 
-<h2>{{product?.title}}</h2>
-       
-        <p>description: {{product?.description}}</p>
-        <p>product-price {{product?.price}}</p>
-        <div *ngIf="product?.reviews.length">
-            <p *ngFor="let review of product?.reviews">{{review?.rating}} {{review?.review}} {{review?.username}}</p>
+    </button>
+    </div>
+    <div class="details-info">
+
+        <h2>{{product?.title}}</h2>
+
+        <p class="details-info-description"><span>Description:</span> {{product?.description}}</p>
+        <p class="details-info-description"><span>Product brand: </span> {{product?.brand}}</p>
+        <div
+            *ngIf="hasDiscount"
+            class="product-discount"
+        >
+
+            <p class="product-discount-percentage details-info-description"><span>Discount: </span><span class="red">-
+                    {{product.discountPercentage}}%</span></p>
+            <p class="product-old-price details-info-description"><span>Price: </span>{{product.price}}$</p>
+            <p class="product-price details-info-description"><span>Price after discount: </span><span
+                    class="red">{{priceAfterDiscount}}$</span></p>
         </div>
-        <div class="product-rating">
-        
-            <span>
-                <i
-                    *ngFor="let star of goldStars"
-                    class="fa-solid fa-star gold"
-                ></i>
-                <i
-                    *ngFor="let star of blueStars"
-                    class="fa-solid fa-star"
-                ></i>
-                {{productRating}}
-            </span>
-            <span>({{product?.reviews.length}} reviews)</span>
-            <button>Add review</button>
-        
+        <div *ngIf="!hasDiscount">
+            <p class="product-price details-info-description">{{product.price}}$</p>
         </div>
-        <p>product-brand {{product?.brand}}</p>
-        <p>product-discountPercentage {{product?.discountPercentage}}</p>
+    
+
+        <div class="product-rating details-info-description">
+            <div class="rating-stars">
+
+                <span>
+                    <i
+                        *ngFor="let star of goldStars"
+                        class="fa-solid fa-star gold"
+                    ></i>
+                    <i
+                        *ngFor="let star of blueStars"
+                        class="fa-solid fa-star"
+                    ></i>
+                    {{productRating}}
+                </span>
+                <span>({{product?.reviews.length}} reviews)</span>
+            </div>
+            <div class="buttons">
+
+                <button>Add review</button>
+                <button (click)="showReviewsToggle()">{{showReviews? "Hide reviews" :"View reviews"}}</button>
+            </div>
+        </div>
+        <div
+            class="product-reviews"
+            *ngIf="showReviews"
+        >
+            <app-product-reviews [product]="product" />
+        </div>
+
     </div>
 
 </div>
-
-<!-- <img
-    *ngFor="let image of product.images"
-    src="{{image}}"
-    alt=""
-> -->

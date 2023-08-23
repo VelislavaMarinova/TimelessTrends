@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { CartCountService } from 'src/app/cartCount.service';
 import { Product } from 'src/app/types/product';
 import { UserService } from 'src/app/user/user.service';
 
@@ -13,15 +14,20 @@ import { UserService } from 'src/app/user/user.service';
 export class ProductDetailsComponent {
   product: Product | undefined
   isLoading: boolean = true;
-  productRating:number=0;
+  productRating: number = 0;
   goldStars: number[];
   blueStars: number[];
+  hasDiscount: boolean;
+  priceAfterDiscount: number = 0;
+  addCountToCart: number = 1;
+
 
 
   isAuthenticated = false;
   private userSub!: Subscription;
   username: string | undefined;
-  isOwner: boolean = false
+  isOwner: boolean = false;
+  showReviews: boolean = false;
 
   id: string = '';
 
@@ -30,19 +36,20 @@ export class ProductDetailsComponent {
     private userService: UserService,
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
+    private cartCountService: CartCountService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.hasDiscount = false;
 
+    this.showReviews = false;
     this.userSub = this.userService.user$$.subscribe(user => {
       this.isAuthenticated = !!user;
       this.username = user?.username;
     });
 
     this.loadData();
-   
-    
   }
 
   loadData() {
@@ -54,15 +61,20 @@ export class ProductDetailsComponent {
         {
           next: (res) => {
             this.product = res;
-            console.log(this.product,"details");
-            
+            console.log(this.product, "details");
+            if (this.product.discountPercentage !== 0) {
+              this.hasDiscount = true;
+              this.priceAfterDiscount = this.product.price - Number((this.product.price * this.product.discountPercentage / 100).toFixed(2))
+
+            }
+
             this.isLoading = false;
             if (this.product.reviews.length !== 0) {
               this.product.reviews.forEach(r => {
                 this.productRating += r.rating
               });
               this.productRating = Number((this.productRating / this.product.reviews.length).toFixed(2))
-        
+
               this.goldStars = new Array(Math.round(this.productRating));
               this.blueStars = new Array(5 - Math.round(this.productRating))
             } else {
@@ -81,7 +93,12 @@ export class ProductDetailsComponent {
     })
   }
 
-  openModal(){
-    
+  showReviewsToggle() {
+    this.showReviews = !this.showReviews
+  }
+  onAddToCart() {
+
+    this.cartCountService.updateCartCount(this.addCountToCart);
+    alert(`${this.product.title} added to cart`);
   }
 }

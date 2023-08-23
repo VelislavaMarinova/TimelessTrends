@@ -43,6 +43,30 @@ export class ProductsListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { }
 
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params: Params) => {
+      console.log("onInit");
+
+      this.category = params.get('category');
+      this.isLoading = true;
+      this.loadMore = false
+      this.priceMax = undefined;
+      this.priceMin = undefined;
+      this.filterByBrand = undefined;
+      this.sortByParam = undefined;
+      this.sortOption = undefined;
+      this.order = undefined;
+      this.totalProducts = 0;
+      this.isFilterAdded = false;
+      this.page = 1
+      this.limit = 8
+      // this.sortDirection = "asc";
+
+      // Load data for the new category
+      this.loadData();
+    });
+  }
+
   onPerPageChange() {
     this.page = 1
     // console.log('Items per page changed:', this.perPage);
@@ -57,10 +81,9 @@ export class ProductsListComponent implements OnInit {
 
     if (formValues.value.priceRange) {
       this.filterByPrice = formValues.value.priceRange;
-      console.log(this.filterByPrice, "plc");
       if (this.filterByPrice === 'more than 199') {
         this.priceMin = Number(this.filterByPrice.split(" ")[2]);
-        this.priceMax = 10000
+        this.priceMax = 10000;
 
       } else if (this.filterByPrice === 'remove filter') {
         this.filterByPrice = undefined
@@ -118,29 +141,6 @@ export class ProductsListComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params: Params) => {
-      console.log("onInit");
-
-      this.category = params.get('category');
-      this.isLoading = true;
-      this.loadMore = false
-      this.priceMax = undefined;
-      this.priceMin = undefined;
-      this.filterByBrand = undefined;
-      this.sortByParam = undefined;
-      this.sortOption = undefined;
-      this.order = undefined;
-      this.totalProducts = 0;
-      this.isFilterAdded = false;
-      this.page = 1
-      this.limit = 8
-      // this.sortDirection = "asc";
-
-      // Load data for the new category
-      this.loadData();
-    });
-  }
 
   loadData() {
 
@@ -170,8 +170,8 @@ export class ProductsListComponent implements OnInit {
             this.totalPages = Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
 
           }
-          if(this.totalPages>this.page){
-            this.loadMore=true
+          if (this.totalPages > this.page) {
+            this.loadMore = true
           }
 
           this.isLoading = false;

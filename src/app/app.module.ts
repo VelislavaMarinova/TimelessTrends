@@ -15,6 +15,7 @@ import { SortProductsComponent } from './products/sort-products/sort-products.co
 import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
 import { CartCountService } from './cartCount.service';
 import { ApiService } from './api.service';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ApiService } from './api.service';
     ProductCardComponent,
     SidebarComponent,
     SortProductsComponent,
-    FilterPipeByPrice
+    FilterPipeByPrice,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

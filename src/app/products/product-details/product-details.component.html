@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="image">
+        <img src="{{product?.images[1]}}" alt="">
+    </div>
+    <div class="product-info">
+
+<h2>{{product?.title}}</h2>
+       
+        <p>description: {{product?.description}}</p>
+        <p>product-price {{product?.price}}</p>
+        <div *ngIf="product?.reviews.length">
+            <p *ngFor="let review of product?.reviews">{{review?.rating}} {{review?.review}} {{review?.username}}</p>
+        </div>
+        <div class="product-rating">
+        
+            <span>
+                <i
+                    *ngFor="let star of goldStars"
+                    class="fa-solid fa-star gold"
+                ></i>
+                <i
+                    *ngFor="let star of blueStars"
+                    class="fa-solid fa-star"
+                ></i>
+                {{productRating}}
+            </span>
+            <span>({{product?.reviews.length}} reviews)</span>
+            <button>Add review</button>
+        
+        </div>
+        <p>product-brand {{product?.brand}}</p>
+        <p>product-discountPercentage {{product?.discountPercentage}}</p>
+    </div>
+
+</div>
+
+<!-- <img
+    *ngFor="let image of product.images"
+    src="{{image}}"
+    alt=""
+> -->

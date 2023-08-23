@@ -1,26 +1,71 @@
-input.ng-invalid.ng-touched{
-    border: 1px solid red
-}
-input.ng-valid.ng-touched{
-    border: 1px solid green
-}
-.input-help{
-    color: red;
-    font-weight: 600;
-}
-
-
-img{
-    height: 100%;
-     opacity: 0.7;
-     object-fit: cover;
+.container{
+    padding-top:4rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
  }
  
+ .register-form{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ }
+
+ .register-form-username,
+ .register-form-email,
+ .register-form-password,
+ .register-form-rePass{
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 1rem;
+ }
+
+ .register-form-rePass{
+     margin-bottom: 1rem;
+ }
+ .label-username,
+ .label-email ,
+ .label-password,
+ .label-rePass{
+ margin-bottom: 0.5rem;
+ }
+
+ .register-form-username input,
+ .register-form-email input,
+ .register-form-password input,
+ .register-form-rePass input{
+    width: 30vw;
+     border-radius: 4px;
+     padding: 0.5rem;
+     margin-bottom: 0.5rem;
+ }
+
+ .register-form-username p,
+ .register-form-email p,
+ .register-form-password p,
+ .register-form-rePass p{
+     color: red;
+ }
  
- .register{
-     height: 90vh;
-     
+ .register-btn{
+     background-color: var(--color-paynesgray);
+     color: white;
+     border: 1px solid var(--color-paynesgray);
+     border-radius: 4px;
+     padding: 0.5rem 1rem;
+     margin-bottom: 1rem;
+     transition: all 0.2s ease-in-out;
  }
- .form{
-   padding-top: 5rem;
+ 
+ .register-btn:hover{
+ background-color: var(--color-silver);
+ color: var(--color-paynesgray);
  }
+
+ .register-btn:disabled{
+ background-color: grey;
+ color: lightgray;
+
+ }
+ 

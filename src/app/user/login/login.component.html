@@ -1,7 +1,7 @@
-<section class="login">
-  <div class="row">
+<section class="container">
+  
 
-    <div class="form col-8 col-sm-8 col-md-8 col-lg-6 col-xl-4 offset-xl-1 login">
+    <div class="login">
       <div
         *ngIf="isLoading"
         class="loader"
@@ -9,7 +9,7 @@
         <app-loader />
       </div>
       <div
-        class="alert alert-danger"
+        class=""
         *ngIf="error"
       >
         {{error}}
@@ -20,21 +20,21 @@
         *ngIf="!isLoading"
         class="login-form"
       >
-        <div class="form-outline mb-4">
+        <div class="login-form-email">
           <label
-            class="form-label"
+            class="label-email"
             for="email"
           ><span><i class="fas fa-envelope"></i></span> Email address</label>
           <input
             type="email"
             id="email"
             name="email"
-            class="form-control form-control-lg"
+            class="email-input"
             placeholder="Enter a valid email address"
             formControlName="email"
           />
-          <small
-            class="input-help form-text "
+          <p
+            class=""
             *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched"
           ><ng-container *ngIf="loginForm.get('email')?.hasError('required')">
               Email is required!
@@ -42,50 +42,53 @@
             <ng-container *ngIf="loginForm.get('email')?.hasError('invalidEmail')">
               Invalid email!
             </ng-container>
-          </small>
+          </p>
         </div>
-        <label
-          class="form-label"
-          for="password"
-        ><span><i class="fas fa-lock"></i></span>
-          Password
-        </label>
-        <div class="form-outline mb-3">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control form-control-lg"
-            placeholder="Enter password"
-            formControlName="password"
-          />
-          <small
-            class="input-help form-text"
-            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-          >
-            <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
-              Password is required!
-            </ng-container>
-            <ng-container *ngIf="loginForm.get('password')?.hasError('minlength')">
-              Password must be at least 6 characters long.
-            </ng-container>
-          </small>
-        </div>
+        <div class="login-form-password">
 
-        <div class="text-center text-lg-start mt-4 pt-2">
+          <label
+            class="label-password"
+            for="password"
+          ><span><i class="fas fa-lock"></i></span>
+            Password
+          </label>
+          
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="input-password"
+              placeholder="Enter password"
+              formControlName="password"
+            />
+            <p
+              class="input-help form-text"
+              *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            >
+              <ng-container *ngIf="loginForm.get('password')?.hasError('required')">
+                Password is required!
+              </ng-container>
+              <ng-container *ngIf="loginForm.get('password')?.hasError('minlength')">
+                Password must be at least 6 characters long.
+              </ng-container>
+            </p>
+        </div>
+      
+
+       
           <button
             type="submit"
-            class="btn btn-primary btn-lg"
-            style="padding-left: 2.5rem; padding-right: 2.5rem;"
+            class="login-btn"
+           
             [disabled]="!loginForm.valid"
           >Login</button>
-          <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a
-              routerLink="/user/register"
-              class="link"
-            >Register</a></p>
-        </div>
+       
+        <p class="">Don't have an account? <a
+            routerLink="/auth/register"
+            class="link"
+          >Register</a></p>
       </form>
     </div>
-  </div>
+ 
 
 </section>

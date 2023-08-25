@@ -28,7 +28,6 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   ) { };
 
   ngOnInit(): void {
-    console.log(this.product);
     if (this.product.reviews.length !== 0) {
       this.product.reviews.forEach(r => {
         this.productRating += r.rating
@@ -38,7 +37,7 @@ export class ProductCardComponent implements OnInit, OnDestroy {
       this.goldStars = new Array(Math.round(this.productRating));
       this.blueStars = new Array(5 - Math.round(this.productRating))
     } else {
-      this.blueStars = new Array(5)
+      this.blueStars = new Array(5);
     }
     if (this.product.discountPercentage !== 0) {
       this.hasDiscount = true;
@@ -48,23 +47,16 @@ export class ProductCardComponent implements OnInit, OnDestroy {
     this.userSub = this.userService.user$$.subscribe(user => {
       this.isAuthenticated = !!user;
 
-      console.log(user);
-
     });
 
   }
-
-
-  // Handle(event: number) {
-  //   this.product.rating = Number(((this.product.rating + event) / 2).toFixed(2))
-  //   alert(`You rate ${event}`);
-  // }
 
   onAddToCart() {
 
     this.cartCountService.updateCartCount(this.addCountToCart);
     alert(`${this.product.title} added to cart`);
   }
+
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
   }

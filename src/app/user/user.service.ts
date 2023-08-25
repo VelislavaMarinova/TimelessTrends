@@ -45,8 +45,6 @@ export class UserService {
       return throwError(errorMessage);
     }), tap(resData => {
 
-      console.log(resData);
-
       this.handleAuthenticaton(
         resData.user.id,
         resData.user.username,
@@ -70,7 +68,6 @@ export class UserService {
       password: password
     }).pipe(catchError
       (this.handleError), tap(resData => {
-        console.log(resData, "data");
 
         this.handleAuthenticaton(
           resData.user.id,

@@ -6,8 +6,6 @@ import { RouterLink } from '@angular/router';
 import { DropdownDirective } from '../shared/dropdown.directive';
 import { SharedModule } from '../shared/shared.module';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Route, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { Product } from 'src/app/types/product';
@@ -38,7 +38,6 @@ export class AddReviewComponent implements OnInit, OnDestroy{
   
       this.username = user?.username;
       this.userId=Number(user?.id)
-      console.log(user);
       
     });
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -71,10 +70,10 @@ export class AddReviewComponent implements OnInit, OnDestroy{
   }
   onSubmit() {
     if (!this.reviewFormGroup.valid) {
-      return
+      return;
     }
+
     this.isLoading = true;
-    console.log(this.reviewFormGroup.value);
     this.review={
       rating: Number(this.reviewFormGroup?.value.rating),
       review: this. reviewFormGroup.value.review,
@@ -82,7 +81,6 @@ export class AddReviewComponent implements OnInit, OnDestroy{
       userId:Number(this.userId),
       username: this.username
     }
-    console.log(this.review);
     
     this.apiService.addReview(this.review).subscribe(
       {
@@ -98,9 +96,9 @@ export class AddReviewComponent implements OnInit, OnDestroy{
 
       }
     )
-    
 
   }
+
   ngOnDestroy(): void {
     this.userSub.unsubscribe()
   }

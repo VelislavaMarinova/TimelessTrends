@@ -19,7 +19,7 @@ export class ApiService {
   //   return this.http.get(`${apiUrl}?category=${category}`);
   // }
 
-  getProductsByCategoryPaginate(
+  getProductsByCategoryFilterSortPaginate(
     category: string,
     sort: string,
     order: string,
@@ -42,7 +42,6 @@ export class ApiService {
     }
     url += `&_page=${page}&_limit=${limit}`
     return this.http.get<Product[]>(url, { observe: 'response' });
-    // return this.http.get<Product[]>(`${apiUrl}?category=${category}&_sort=${sort}&_order=${order}&price_gte=${priceMin}&price_lte=${priceMax}&brand=${brand}&_page=${page}&_limit=${limit}`, { observe: 'response' });
   }
 
   getProductsByCategory(category: string): Observable<Product[]> {
@@ -77,8 +76,6 @@ export class ApiService {
     return this.http.get<Product[]>(url, { observe: 'response' }).pipe(
       map(response => {
         const totalCount = response.body.length
-       
-        
         return totalCount;
       })
     );

@@ -193,6 +193,5 @@
     grid-template-columns: 1fr;
     gap: 1rem;
     grid-template-rows: auto;
-    /* padding-inline: 2rem; */
   }
 }

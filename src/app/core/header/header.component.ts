@@ -45,16 +45,16 @@ export class HeaderComponent implements OnInit,OnDestroy {
 
   onCloseMenuClick() {
     this.isMenuOpen = !this.isMenuOpen;
-    console.log(this.isMenuOpen);
   }
+
   setIsOpenedToTrue() {
     this.isMenuOpen = true;
   }
+
   onLogout(){
-    console.log('logout');
-    
     this.userService.logout()
   }
+
   ngOnDestroy() {
     this.cartCountSubscription.unsubscribe();
     this.userSub.unsubscribe();

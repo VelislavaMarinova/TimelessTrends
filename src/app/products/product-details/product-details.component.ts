@@ -20,15 +20,11 @@ export class ProductDetailsComponent implements OnInit,OnDestroy{
   hasDiscount: boolean;
   priceAfterDiscount: number = 0;
   addCountToCart: number = 1;
-
-
-
   isAuthenticated = false;
   private userSub!: Subscription;
   username: string | undefined;
   isOwner: boolean = false;
   showReviews: boolean = false;
-
   id: number;
 
 
@@ -61,7 +57,6 @@ export class ProductDetailsComponent implements OnInit,OnDestroy{
         {
           next: (res) => {
             this.product = res;
-            console.log(this.product, "details");
             if (this.product.discountPercentage !== 0) {
               this.hasDiscount = true;
               this.priceAfterDiscount = this.product.price - Number((this.product.price * this.product.discountPercentage / 100).toFixed(2))

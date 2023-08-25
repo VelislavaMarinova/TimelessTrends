@@ -1,4 +1,8 @@
-<div class="container">
+<div *ngIf="isLoading" class="loader container">
+    <app-loader/>
+</div>
+<div class="container" *ngIf="!isLoading">
+    <div ></div>
     <div class="details-image">
         <img
             src="{{product?.images[1]}}"
@@ -13,19 +17,15 @@
         <p> Add to cart</p>
 
     </button>
-    <p *ngIf="!isAuthenticated"><a routerLink="/auth/login">Login</a> to add the product in the cart, to read and add reviews!</p>
     </div>
     <div class="details-info">
-
         <h2>{{product?.title}}</h2>
-
         <p class="details-info-description"><span>Description:</span> {{product?.description}}</p>
         <p class="details-info-description"><span>Product brand: </span> {{product?.brand}}</p>
         <div
             *ngIf="hasDiscount"
             class="product-discount"
         >
-
             <p class="product-discount-percentage details-info-description"><span>Discount: </span><span class="red">-
                     {{product.discountPercentage}}%</span></p>
             <p class="product-old-price details-info-description"><span>Price: </span>{{product?.price}}$</p>
@@ -35,8 +35,6 @@
         <div *ngIf="!hasDiscount">
             <p class="product-price details-info-description">{{product?.price}}$</p>
         </div>
-    
-
         <div class="product-rating details-info-description">
             <div class="rating-stars">
 
@@ -65,7 +63,6 @@
         >
             <app-product-reviews [product]="product" />
         </div>
-
+        <p *ngIf="!isAuthenticated" class="details-login"><a routerLink="/auth/login">Login</a> to enable buttons!</p>
     </div>
-
 </div>

@@ -4,6 +4,7 @@
   align-items: center;
   padding-inline: 1rem;
 }
+
 .header-account .container a{
   text-decoration: none;
   color: var(--color-paynesgray);
@@ -13,18 +14,39 @@
 .header-account .container a:hover{
   border-bottom: 2px solid var(--color-paynesgray);
 }
+
 a.router-link-active,a:active { border-bottom: 2px solid var(--color-paynesgray);}
 a.active{
   border-bottom: 2px solid var(--color-paynesgray);
 }
+
 .header-account .container a:active{
   border-bottom: 2px solid var(--color-paynesgray);
 }
+
 .header-nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.logout-btn{
+  border:none;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: Popins;
+
+}
+.header-logout-btn{
+  border-bottom: 2px solid transparent;
+}
+.header-logout-btn:hover{
+  border-bottom: 2px solid var(--color-paynesgray);
+}
+
+.header-welcome{
+  font-size: 1.4rem;
+}
+
 .header-account {
   position: fixed;
   z-index: 10;
@@ -34,9 +56,11 @@ a.active{
   height: 70px;
   background-color: var(--color-silver);
 }
+
 .header-account .logo {
   font-size: 2rem;
 }
+
 .header-account ul {
   margin: 0;
   display: flex;
@@ -44,6 +68,7 @@ a.active{
   font-size: 2rem;
   gap: 3rem;
 }
+
 .header-account .cart-products {
   background-color: var(--color-red);
   padding: 0.1rem 0.6rem 0.1rem 0.5rem;
@@ -52,7 +77,6 @@ a.active{
   text-align: center;
   color: white;
 }
-
 
 nav {
   position: fixed;
@@ -89,10 +113,12 @@ nav .links a {
 nav .links a:hover {
   border: 1px solid var(--color-silver);
 }
+
 #nav-toggle {
   position: absolute;
   top: -120px;
 }
+
 nav .icon-burger {
   display: none;
   position: absolute;
@@ -100,6 +126,7 @@ nav .icon-burger {
   top: 50%;
   transform: translateY(-50%);
 }
+
 nav .icon-burger .line {
   width: 30px;
   height: 5px;
@@ -108,6 +135,7 @@ nav .icon-burger .line {
   border-radius: 3px;
   transition: all 0.3s ease-in-out;
 }
+
 @media (max-width: 1024px) {
   nav .links a {
     font-size: 0.8rem;
@@ -123,14 +151,13 @@ nav .icon-burger .line {
 	gap:1rem;
   }
 
-
   .header-account .logo {
     font-size: 1.5rem;
   }
+
   .header-account ul {
     font-size: 1rem;
   }
-
 
   .header-account .cart-products {
     background-color: var(--color-red);
@@ -157,27 +184,34 @@ nav .icon-burger .line {
     box-sizing: border-box;
     transition: all 0.5s ease-in-out;
   }
+
   nav .links a {
     font-size: 20px;
     color: var(--color-text);
     padding: 1rem 2rem 1rem 1rem;
     border-bottom: 1px solid var(--color-text);
   }
+
   nav :checked ~ .links {
     bottom: 0;
   }
+
   nav .icon-burger {
     display: block;
 	position: static;
 	margin-top: 2.2rem;
   }
+
   nav :checked ~ .icon-burger .line:nth-child(1) {
     transform: translateY(10px) rotate(225deg);
   }
+
   nav :checked ~ .icon-burger .line:nth-child(3) {
     transform: translateY(-10px) rotate(-225deg);
   }
+
   nav :checked ~ .icon-burger .line:nth-child(2) {
     opacity: 0;
   }
+
 }

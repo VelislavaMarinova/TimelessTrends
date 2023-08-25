@@ -16,15 +16,14 @@ export class ProductsListComponent implements OnInit {
   isLoading: boolean = true;
   noProductsInTheList: boolean = false;
   category: string | undefined;
-
+  
   loadMore: boolean = false;
   sortByParam: string | undefined;
-  // sortDirection: string | undefined;
   filterByPrice: string;
   filterByBrand: string | undefined;
   categoryImage: string;
   filterdLength = 0;
-
+  
   priceMin: number | undefined;
   priceMax: number | undefined;
   order: string;
@@ -45,7 +44,6 @@ export class ProductsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params: Params) => {
-      console.log("onInit");
 
       this.category = params.get('category');
       this.isLoading = true;
@@ -58,13 +56,54 @@ export class ProductsListComponent implements OnInit {
       this.order = undefined;
       this.totalProducts = 0;
       this.isFilterAdded = false;
-      this.page = 1
-      this.limit = 8
-      // this.sortDirection = "asc";
-
-      // Load data for the new category
+      this.page = 1;
+      this.limit = 8;
+     
       this.loadData();
     });
+  }
+  
+  loadData() {
+  
+    this.apiService.getProductsByCategoryFilterSortPaginate(
+      this.category,
+      this.sortOption,
+      this.order,
+      this.priceMin,
+      this.priceMax,
+      this.filterByBrand,
+      this.page,
+      this.limit
+    ).subscribe(
+      {
+        next: (response: HttpResponse<Product[]>) => {
+          const totalCountHeader = response.headers.get('X-Total-Count');
+          this.products = response.body
+  
+  
+          if (!this.isFilterAdded) {
+            this.totalProducts = Number(totalCountHeader);
+            this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit);
+            if (this.products.length === 0) {
+              this.noProductsInTheList = true;
+            }
+          } else {
+            this.totalPages = Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
+  
+          }
+          if (this.totalPages > this.page) {
+            this.loadMore = true
+          }
+  
+          this.isLoading = false;
+  
+        },
+        error: (err) => {
+          this.isLoading = false
+          console.log(`Error ${err}`);
+        }
+      })
+  
   }
 
   onPerPageChange() {
@@ -74,7 +113,6 @@ export class ProductsListComponent implements OnInit {
   }
 
   handleFormFilterChange(formValues: any) {
-    console.log('Form values:', formValues.value);
     this.isFilterAdded = true;
 
     if (formValues.value.priceRange) {
@@ -109,20 +147,17 @@ export class ProductsListComponent implements OnInit {
     if (this.filterByBrand === undefined && this.filterByPrice === undefined) {
       this.isFilterAdded = false
     }
-    console.log(this.priceMin, this.priceMax);
-    console.log(this.filterByBrand);
-
 
     this.page = 1;
 
-    this.apiService.getTotalProductsCountIfFilter(this.category,
+    this.apiService.getTotalProductsCountIfFilter(
+      this.category,
       this.priceMin,
       this.priceMax,
-      this.filterByBrand).subscribe(totalCount => {
-        this.totalProductsAfterFilter = totalCount;
-      })
-    console.log(this.totalProductsAfterFilter);
-
+      this.filterByBrand
+    ).subscribe(totalCount => {
+      this.totalProductsAfterFilter = totalCount;
+    })
 
     this.loadData();
 
@@ -140,48 +175,6 @@ export class ProductsListComponent implements OnInit {
 
 
 
-  loadData() {
-
-    this.apiService.getProductsByCategoryPaginate(
-      this.category,
-      this.sortOption,
-      this.order,
-      this.priceMin,
-      this.priceMax,
-      this.filterByBrand,
-      this.page,
-      this.limit
-    ).subscribe(
-      {
-        next: (response: HttpResponse<Product[]>) => {
-          const totalCountHeader = response.headers.get('X-Total-Count');
-          this.products = response.body
-
-
-          if (!this.isFilterAdded) {
-            this.totalProducts = Number(totalCountHeader);
-            this.totalPages = Math.ceil(Number(totalCountHeader) / this.limit);
-            if (this.products.length === 0) {
-              this.noProductsInTheList = true;
-            }
-          } else {
-            this.totalPages = Math.ceil(Number(this.totalProductsAfterFilter) / this.limit)
-
-          }
-          if (this.totalPages > this.page) {
-            this.loadMore = true
-          }
-
-          this.isLoading = false;
-
-        },
-        error: (err) => {
-          this.isLoading = false
-          console.log(`Error ${err}`);
-        }
-      })
-
-  }
 
 
   onLoadMore() {
@@ -193,7 +186,7 @@ export class ProductsListComponent implements OnInit {
 
   loadMoreProducts() {
     if (this.page <= this.totalPages) {
-      this.apiService.getProductsByCategoryPaginate(
+      this.apiService.getProductsByCategoryFilterSortPaginate(
         this.category!,
         this.sortOption,
         this.order,

@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
       {
         next: (resData) => {
 
-          console.log(resData);
           this.isLoading = false;
           this.router.navigate(['/']);
           this.loginForm.reset()

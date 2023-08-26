@@ -4,11 +4,11 @@ import { NgForm } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 import { Subscription } from 'rxjs';
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) filterForm: NgForm;
   @Input() products: Product[];
   @Input() category: string;

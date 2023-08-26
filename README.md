@@ -31,8 +31,9 @@ This project is generated with Angular version 16.1.4. The project is about list
 6.Footer
 
 
-![Timeless Trends](src/assets/page.png)
-![Timeless Trends](src/assets/page2.png) ![Timeless Trends](src/assets/page3.png)
+![Timeless Trends](src/assets/start-app.png)
+![Timeless Trends](src/assets/page2.png) ![Timeless Trends](src/assets/start-logged-in-app.png)
+![Timeless Trends](src/assets/details-page.png)
 
 ## Install dependencies: 
 

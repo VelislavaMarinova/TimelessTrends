@@ -8,8 +8,7 @@ This project is generated with Angular version 16.1.4. The project is about list
   header remain visible
 - header has just a couple of categories. Clicking on a category there are
   loaded different set of products depending on the category selected
-- When a customer opens the page, the first category should
-  is loaded by default.
+- When a customer opens the page, the first category is loaded by default.
 2. Product counter – small section showing how many products are currently displayed in the
   product grid. (x out of y).
 3. Product Grid
@@ -19,7 +18,9 @@ This project is generated with Angular version 16.1.4. The project is about list
       - Image of the product
       - Name of the product
       - Short description
-      - Price 
+      - Price
+      - Price discount percentage
+      - Prace after discount
       - Ratings ‘stars’.
       - Add to cart button – a success alert is displayed on click
 4. Sorting mechanism:
@@ -28,7 +29,17 @@ This project is generated with Angular version 16.1.4. The project is about list
 5. Filtering mechanism:
   - filter by price range
   - filter by brand
-6.Footer
+    6. Details page
+      - Image of the product
+      - Name of the product
+      - Short description
+      - Price
+      - Price discount percentage
+      - Prace after discount
+      - Ratings ‘stars’.
+      - Only logged in users can add review and rate the product
+      - Add to cart button –only logged in useres can click the button, a success alert is displayed on click
+6. Footer
 
 
 ![Timeless Trends](src/assets/start-app.png)
@@ -48,5 +59,7 @@ Navigate to `http://localhost:4200/`. The application will automatically reload 
 - https://github.com/VelislavaMarinova/json-server;
 - run server: npm start;
 - used data: https://dummyjson.com/docs/products
-## Note:
-DummyJSON returns categories with 5 products each. To implement the logic for loading more products, I simulated different numbers of products for each collection by multiplying these 5 products. This allows users to experience various scenarios where more than 5 products are needed to be loaded in order to see all the available items.
+## TODO:
+- edit and delete review;
+- Profile page
+

@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: 'https://json-server-app-707ded616226.herokuapp.com',
+    apiUrl: 'http://localhost:3200',
 };

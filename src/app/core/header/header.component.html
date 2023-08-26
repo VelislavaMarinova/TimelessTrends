@@ -2,7 +2,7 @@
     <div class="header-account">
         <div class="container">
             <div class="logo"><a routerLink="/">Timeless<strong>Trends</strong></a></div>
-            <ul>
+            <ul class="header-login-register-cart-welcome">
                 <li *ngIf="isAuthenticated"><i class="fa-solid fa-cart-shopping"></i><span class="cart-products">{{cartCount}}</span></li>
                 <li  *ngIf="isAuthenticated"><i class="fa-solid fa-user"></i><span class="header-welcome"> Welcome {{username}}</span></li>
                 <li *ngIf="!isAuthenticated"><a routerLink="/auth/login">Login</a></li>

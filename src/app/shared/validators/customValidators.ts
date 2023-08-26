@@ -22,19 +22,9 @@ function emailValidator(): ValidatorFn {
     };
   }
 
- function imageUrlValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const value = control.value;
-      if (value && !/^https?:\/\//i.test(value)) {
-        return { invalidImageUrl: true };
-      }
-      return null;
-    };
-  }
-
   function noSpaceValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (control.value && control.value.trim().length === 0) {
+      if (control.value && control.value.trim().length <3) {
         return { containsSpace: true };
       }
       return null;
@@ -45,7 +35,6 @@ function emailValidator(): ValidatorFn {
     return {
        passwordsMatch: passwordsMatchValidator,
        email: emailValidator,
-       url: imageUrlValidator,
        noSpaceValidator: noSpaceValidator,
     }
   }

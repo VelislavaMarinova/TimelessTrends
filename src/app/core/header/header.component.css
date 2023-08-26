@@ -34,6 +34,7 @@ a.active{
   background-color: transparent;
   font-size: 1.2rem;
   font-family: Popins;
+  color: var(--color-paynesgray);
 
 }
 .header-logout-btn{
@@ -43,9 +44,9 @@ a.active{
   border-bottom: 2px solid var(--color-paynesgray);
 }
 
-.header-welcome{
-  font-size: 1.4rem;
-}
+/* .header-login-register-cart-welcome{
+  font-size: 1.2rem;
+} */
 
 .header-account {
   position: fixed;
@@ -65,7 +66,7 @@ a.active{
   margin: 0;
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.2rem;
   gap: 3rem;
 }
 
@@ -214,4 +215,19 @@ nav .icon-burger .line {
     opacity: 0;
   }
 
+}
+@media (max-width: 600px) {
+  .container .logo{
+    font-size: 1.2rem;
+  }
+  .logout-btn{
+    font-size: 1rem;
+  }
+  
+    
+  
+  .header-account ul{
+    gap:0.5rem;
+    font-size: 1rem;
+  }
 }

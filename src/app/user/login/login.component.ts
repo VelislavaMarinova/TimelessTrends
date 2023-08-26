@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         customValidatorsFn.email(),
         customValidatorsFn.noSpaceValidator()
+
       ]),
       'password': new FormControl('', [
         Validators.required,
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.loginForm.value;
 
-    this.userService.login(email, password).subscribe(
+    this.userService.login(email.trim(), password).subscribe(
       {
         next: (resData) => {
 

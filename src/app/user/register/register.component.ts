@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   createForm() {
     this.registerForm = new FormGroup({
-      'username': new FormControl('', [Validators.required, Validators.minLength(3), customValidatorsFn.noSpaceValidator()]),
+      'username': new FormControl('', [Validators.required, customValidatorsFn.noSpaceValidator()]),
       'email': new FormControl('', [Validators.required, customValidatorsFn.email(),customValidatorsFn.noSpaceValidator()]),
       'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
       'rePass': new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     const { username, email, password, rePass } = this.registerForm.value;
 
     this.isLoading = true;
-    this.userService.register(username, email, password).subscribe(
+    this.userService.register(username.trim(), email.trim(), password).subscribe(
       {
         next: (resData) => {
           this.isLoading = false;

@@ -44,6 +44,7 @@ Run `ng serve` for a dev server.
 Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Data source:
- DummyJSON: https://dummyjson.com/docs/products
+https://github.com/VelislavaMarinova/json-server;
+run server: npm start;
 ## Note:
 DummyJSON returns categories with 5 products each. To implement the logic for loading more products, I simulated different numbers of products for each collection by multiplying these 5 products. This allows users to experience various scenarios where more than 5 products are needed to be loaded in order to see all the available items.

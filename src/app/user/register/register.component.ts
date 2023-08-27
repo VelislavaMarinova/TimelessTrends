@@ -1,10 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup,Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { emailValidator } from 'src/app/shared/validators/email-validator';
-import { passwordsMatchValidator } from 'src/app/shared/validators/passwords-match-validator';
+import { customValidators } from 'src/app/shared/validators/customValidators';
 
+let customValidatorsFn = customValidators()
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,12 +26,12 @@ export class RegisterComponent implements OnInit {
 
   createForm() {
     this.registerForm = new FormGroup({
-      'username': new FormControl('',[Validators.required, Validators.minLength(3)]),
-      'email': new FormControl('', [Validators.required, emailValidator()]),
+      'username': new FormControl('', [Validators.required, customValidatorsFn.noSpaceValidator()]),
+      'email': new FormControl('', [Validators.required, customValidatorsFn.email(),customValidatorsFn.noSpaceValidator()]),
       'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
       'rePass': new FormControl('', [Validators.required, Validators.minLength(6)]),
 
-    },{ validators: passwordsMatchValidator() })
+    }, { validators: customValidatorsFn.passwordsMatch() })
   }
   onSubmit() {
     if (this.registerForm.invalid) {
@@ -39,9 +39,9 @@ export class RegisterComponent implements OnInit {
     }
 
     const { username, email, password, rePass } = this.registerForm.value;
-  
+
     this.isLoading = true;
-    this.userService.register(username, email, password).subscribe(
+    this.userService.register(username.trim(), email.trim(), password).subscribe(
       {
         next: (resData) => {
           this.isLoading = false;
@@ -54,5 +54,5 @@ export class RegisterComponent implements OnInit {
         }
       })
   }
- 
+
 }

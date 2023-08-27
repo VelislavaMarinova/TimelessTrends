@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { emailValidator } from 'src/app/shared/validators/email-validator';
+import { customValidators } from 'src/app/shared/validators/customValidators';
 
+let customValidatorsFn = customValidators()
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ import { emailValidator } from 'src/app/shared/validators/email-validator';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
   isLoading = false;
-  error: string | undefined;
+  error: string | "aaaa";
 
 
   constructor(
@@ -26,8 +27,16 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = new FormGroup({
-      'email': new FormControl('', [Validators.required, emailValidator()]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(6)]),
+      'email': new FormControl('', [
+        Validators.required,
+        customValidatorsFn.email(),
+        customValidatorsFn.noSpaceValidator()
+
+      ]),
+      'password': new FormControl('', [
+        Validators.required,
+         Validators.minLength(6),
+        ]),
     })
   }
 
@@ -39,7 +48,7 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.loginForm.value;
 
-    this.userService.login(email, password).subscribe(
+    this.userService.login(email.trim(), password).subscribe(
       {
         next: (resData) => {
 
@@ -47,10 +56,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
           this.loginForm.reset()
 
-        }, error: errorMessage => {
-          console.log(errorMessage);
-          this.error = errorMessage
-          this.isLoading = false;
+        }, error: (err) => {
+          // console.error('An error occurred:', err); // Log the error
+          console.log("err"); 
+          //TODO: catch error
+          
         }
       });
   }

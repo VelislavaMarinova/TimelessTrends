@@ -36,6 +36,7 @@
 .footer-body h4 {
   text-decoration: underline;
   text-underline-offset:0.25rem ;
+  margin-bottom: 1rem;
 }
 .footer-end {
   text-align: center;

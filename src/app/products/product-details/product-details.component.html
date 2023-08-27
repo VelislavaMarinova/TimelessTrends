@@ -20,16 +20,16 @@
     </div>
     <div class="details-info">
         <h2>{{product?.title}}</h2>
-        <p class="details-info-description"><span>Description:</span> {{product?.description}}</p>
-        <p class="details-info-description"><span>Product brand: </span> {{product?.brand}}</p>
+        <p class="details-info-description"><strong>Description:</strong> {{product?.description}}</p>
+        <p class="details-info-description"><strong>Product brand: </strong> {{product?.brand}}</p>
         <div
             *ngIf="hasDiscount"
             class="product-discount"
         >
-            <p class="product-discount-percentage details-info-description"><span>Discount: </span><span class="red">-
+            <p class="product-discount-percentage details-info-description"><strong>Discount: </strong><span class="red">-
                     {{product.discountPercentage}}%</span></p>
-            <p class="product-old-price details-info-description"><span>Price: </span>{{product?.price}}$</p>
-            <p class="product-price details-info-description"><span>Price after discount: </span><span
+            <p class="product-old-price details-info-description"><strong>Price: </strong>{{product?.price}}$</p>
+            <p class="product-price details-info-description"><strong>Price after discount: </strong><span
                     class="red">{{priceAfterDiscount}}$</span></p>
         </div>
         <div *ngIf="!hasDiscount">
@@ -49,7 +49,7 @@
                     ></i>
                     {{productRating}}
                 </span>
-                <span>({{product?.reviews.length}} reviews)</span>
+                <strong>({{product?.reviews.length}} reviews)</strong>
             </div>
             <div class="buttons">
 

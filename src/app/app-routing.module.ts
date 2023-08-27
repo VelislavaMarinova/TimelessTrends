@@ -4,11 +4,12 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { AddReviewComponent } from './products/add-review/add-review.component';
 
+
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/products/sunglasses',
+    redirectTo: `/products/sunglasses`,//TODO pass sunglasses dynamcally
   },
   {
     path: 'products/:category',

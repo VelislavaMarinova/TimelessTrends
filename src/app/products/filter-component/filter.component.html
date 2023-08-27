@@ -1,0 +1,48 @@
+<div class="filter">
+    <form
+        (ngSubmit)="onSubmit()"
+        #f="ngForm"
+    ><div class="form-filters">
+
+        <div class="filter-price">
+
+            <label class="label">Price ranges in $</label>
+
+            <div
+                *ngFor="let range of priceRanges"
+                class="radio-item"
+            >
+                <input
+                    type="radio"
+                    ngModel
+                    [value]="range"
+                    id="{{range}}-price"
+                    name="priceRange"
+                />
+                <label for="{{range}}-price">{{range}}</label>
+                
+            </div>
+
+        </div>
+        <div class="filter-brand">
+
+            <label class="label">Choose brand</label>
+
+            <div
+                *ngFor="let brand of uniqueBrands"
+                class="radio-item"
+            >
+                <input
+                    type="radio"
+                    ngModel
+                    [value]="brand"
+                    id="{{brand}}"
+                    name="brand"
+                />
+                <label for="{{brand}}">{{brand}}</label>
+            </div>
+        </div>
+    </div>
+        <button type="submit" class="filter-btn">Filter</button>
+    </form>
+</div>

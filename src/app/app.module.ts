@@ -10,9 +10,8 @@ import {HttpClientModule}from '@angular/common/http';
 import { ProductCardComponent } from './products/product-card/product-card.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SidebarComponent } from './products/sidebar/sidebar.component';
+import { FilterComponent } from './products/filter-component/filter.component';
 import { SortProductsComponent } from './products/sort-products/sort-products.component';
-import { FilterPipeByPrice } from './shared/pipes/filterByPrice.pipe';
 import { CartCountService } from './cartCount.service';
 import { ApiService } from './api.service';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
@@ -26,9 +25,8 @@ import { AddReviewComponent } from './products/add-review/add-review.component';
     MainComponent,
     ProductsListComponent,
     ProductCardComponent,
-    SidebarComponent,
+    FilterComponent,
     SortProductsComponent,
-    FilterPipeByPrice,
     ProductDetailsComponent,
     ProductReviewsComponent,
     ProductReviewComponent,

@@ -13,7 +13,7 @@ let customValidatorsFn = customValidators()
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
   isLoading = false;
-  error: string | undefined;
+  error: string | "aaaa";
 
 
   constructor(
@@ -56,10 +56,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/']);
           this.loginForm.reset()
 
-        }, error: errorMessage => {
-          console.log(errorMessage);
-          this.error = errorMessage
-          this.isLoading = false;
+        }, error: (err) => {
+          // console.error('An error occurred:', err); // Log the error
+          console.log("err"); 
+          //TODO: catch error
+          
         }
       });
   }
